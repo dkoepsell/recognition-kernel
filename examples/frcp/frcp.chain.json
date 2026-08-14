@@ -1,0 +1,141 @@
+{
+  "$schema": "../../spec/schema/chain.schema.json",
+  "chain_id": "frcp",
+  "system": {
+    "label": "Federal Rules of Civil Procedure",
+    "corpus": "examples/frcp/corpus/frcp_demo.json",
+    "version": "demo fixture, abridged",
+    "declared_kind": "legal_order",
+    "jurisdiction": "United States federal courts",
+    "license": "Work of the United States government; not subject to copyright.",
+    "notes": "Cell 4 of the registered design (paper §10.1 Table 11). The act-thick, repair-thick case, and the positive control on which the gating rule stands: if Stratum D were empty here, either the detector is invalid or the rule is false."
+  },
+  "assigned_by": "hand assignment with evidence locators",
+  "committed_before_detection": true,
+  "links": {
+    "authority": {
+      "status": "internal",
+      "filler": "the rules themselves, promulgated under the Rules Enabling Act and adopted by the Supreme Court",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "Rule 1",
+          "note": "The rules state their own scope and the courts to which they apply."
+        },
+        {
+          "locator": "Rule 83",
+          "note": "Districts may adopt local rules, but only consistent with these rules; the constraint is stated internally."
+        }
+      ],
+      "note": "The enabling statute is external, but the operative authority to fix procedural criteria is exercised within the instrument.",
+      "specification": "internal"
+    },
+    "criteria": {
+      "status": "internal",
+      "filler": "the substantive standards of each rule",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "Rule 8(a)",
+          "note": "States what a pleading must contain."
+        },
+        {
+          "locator": "Rule 23(a)",
+          "note": "States the four prerequisites for class treatment."
+        },
+        {
+          "locator": "Rule 56(a)",
+          "note": "States the standard for summary judgment."
+        }
+      ],
+      "specification": "internal"
+    },
+    "assessor": {
+      "status": "internal",
+      "filler": "the district judge, magistrate judge, and clerk",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "Rule 55(a)",
+          "note": "Assigns entry of default to the clerk specifically."
+        },
+        {
+          "locator": "Rule 23(c)(1)(A)",
+          "note": "Assigns the certification determination to the court."
+        }
+      ],
+      "specification": "internal"
+    },
+    "facts": {
+      "status": "internal",
+      "filler": "the record, affidavits, and discovery material",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "Rule 55(a)",
+          "note": "Failure to defend shown by affidavit or otherwise."
+        },
+        {
+          "locator": "Rule 56(c)",
+          "note": "Specifies the materials on which a factual position may rest."
+        }
+      ],
+      "specification": "internal"
+    },
+    "act": {
+      "status": "internal",
+      "filler": "judgment, order, entry of default, certification",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "Rule 58",
+          "note": "Entry of judgment is specified and performed within the system."
+        },
+        {
+          "locator": "Rule 23(c)(1)(A)",
+          "note": "Certification is by order of the court."
+        }
+      ],
+      "specification": "internal"
+    },
+    "effects": {
+      "status": "internal",
+      "filler": "liability, entitlement, preclusion, enforceability",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "locator": "Rule 54",
+          "note": "Specifies what a judgment is and what relief it may include."
+        },
+        {
+          "locator": "Rule 69(a)(1)",
+          "note": "Enforcement of a money judgment, though the procedure defers to state law."
+        }
+      ],
+      "note": "Partly outward-facing: Rules 64 and 69 route enforcement through state procedure. Recorded as internal because the effect is conferred by the judgment the system itself enters.",
+      "specification": "internal"
+    },
+    "remedy": {
+      "status": "internal",
+      "filler": "new trial, relief from judgment, setting aside default",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "Rule 59",
+          "note": "New trial, with its own deadline."
+        },
+        {
+          "locator": "Rule 60(b)",
+          "note": "Relief from a final judgment, with grounds and timing specified internally."
+        },
+        {
+          "locator": "Rule 55(c)",
+          "note": "Setting aside an entry of default."
+        }
+      ],
+      "note": "Appellate review lies outside this instrument, but the system provides internal repair pathways of its own, which is what repair-thick requires.",
+      "specification": "internal"
+    }
+  },
+  "provenance": "Assigned by inspection of the governing text. Chain extraction has no established reliability (paper §13); this assignment has not been checked against a second annotator."
+}

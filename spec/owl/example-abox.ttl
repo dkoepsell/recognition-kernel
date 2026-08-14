@@ -1,0 +1,86 @@
+@prefix rk:   <https://sool.davidkoepsell.com/ontology/rk#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+
+<https://sool.davidkoepsell.com/ontology/rk/example-abox>
+    a owl:Ontology ;
+    owl:imports <https://sool.davidkoepsell.com/ontology/rk> ;
+    rdfs:label "Example ABox"@en ;
+    rdfs:comment """Three artifacts and a sample of contradictions. This file MUST be consistent.
+
+It also carries the positive test. Nothing below states which named type any
+contradiction belongs to; each is asserted only as a primitive that is part of
+a specification of some kind, in an artifact of some kind. A reasoner is
+expected to derive the named type from those two facts alone. If it derives
+nothing, the named types are being looked up rather than inferred, and the
+claim that a domain typology is a theorem of the product is not being made
+good on."""@en .
+
+#################################################################
+#    A legal order with a full chain
+#################################################################
+
+rk:frcp a owl:NamedIndividual , rk:LegalOrder ;
+    rdfs:label "Federal Rules of Civil Procedure (illustrative fragment)"@en ;
+    obo:BFO_0000051 rk:frcp_criteria , rk:frcp_act , rk:frcp_remedy , rk:frcp_effects .
+
+rk:frcp_criteria a owl:NamedIndividual , rk:CriteriaSpecification ; rdfs:label "the pleading standard"@en .
+rk:frcp_act      a owl:NamedIndividual , rk:ActSpecification      ; rdfs:label "the ruling"@en .
+rk:frcp_remedy   a owl:NamedIndividual , rk:RemedySpecification   ; rdfs:label "appeal"@en .
+rk:frcp_effects  a owl:NamedIndividual , rk:EffectsSpecification  ; rdfs:label "the judgment's consequences"@en .
+
+# K-B1 part of a criteria specification, in a legal order.
+# Expected inference: rk:TemporalContradiction.
+rk:frcp_circularity a owl:NamedIndividual , rk:KB1 ;
+    rdfs:label "a grounding order inverted in the pleading standard"@en ;
+    obo:BFO_0000050 rk:frcp_criteria , rk:frcp .
+
+# K-A1 part of an effects specification, in a legal order.
+# Expected inference: rk:JurisdictionalContradiction.
+rk:frcp_inconsistency a owl:NamedIndividual , rk:KA1 ;
+    rdfs:label "jointly unsatisfiable assertions about the judgment's reach"@en ;
+    obo:BFO_0000050 rk:frcp_effects , rk:frcp .
+
+#################################################################
+#    A classification: criteria and an act, no remedy of its own
+#################################################################
+
+rk:icd11 a owl:NamedIndividual , rk:Classification ;
+    rdfs:label "ICD-11 (illustrative fragment)"@en ;
+    obo:BFO_0000051 rk:icd11_criteria , rk:icd11_act .
+
+rk:icd11_criteria a owl:NamedIndividual , rk:CriteriaSpecification ; rdfs:label "the coding rules"@en .
+rk:icd11_act      a owl:NamedIndividual , rk:ActSpecification      ; rdfs:label "assigning a code"@en .
+
+# The same coordinates as rk:frcp_circularity, in a different kind of system.
+# Expected inference: rk:CriterionCircularity, NOT rk:TemporalContradiction.
+rk:icd11_circularity a owl:NamedIndividual , rk:KB1 ;
+    rdfs:label "a definitional cycle in the coding rules"@en ;
+    obo:BFO_0000050 rk:icd11_criteria , rk:icd11 .
+
+# Chapter 26 as WHO states it: a status is recorded and mandated, while
+# nothing is asserted to inhere in anyone. The declaration is about no borne
+# role, which is statable here only because the two-part model separates the
+# declaration from the role.
+rk:icd11_ch26_declaration a owl:NamedIndividual , rk:StatusDeclaration , rk:DeclarationWithoutBorneRole ;
+    rdfs:label "a status recorded without a role asserted to be borne"@en .
+
+#################################################################
+#    A reference ontology: no chain at all
+#
+#    Its contradictions are part of the artifact and part of no specification,
+#    which is what the artifact body amounts to. Stratum D is absent here, not
+#    because it was suppressed but because there is no act for it to sit at.
+#################################################################
+
+rk:go a owl:NamedIndividual , rk:ReferenceOntology ;
+    rdfs:label "Gene Ontology (illustrative fragment)"@en .
+
+rk:go_inconsistency a owl:NamedIndividual , rk:KA1 ;
+    rdfs:label "jointly unsatisfiable assertions in the ontology body"@en ;
+    obo:BFO_0000050 rk:go .
+
+rk:go_incoherence a owl:NamedIndividual , rk:KA2 ;
+    rdfs:label "a class equivalent to the empty class"@en ;
+    obo:BFO_0000050 rk:go .

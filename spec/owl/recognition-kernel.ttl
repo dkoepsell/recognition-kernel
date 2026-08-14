@@ -1,0 +1,690 @@
+@prefix rk:   <https://sool.davidkoepsell.com/ontology/rk#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+
+<https://sool.davidkoepsell.com/ontology/rk> a owl:Ontology ;
+    dct:title "The Recognition Kernel"@en ;
+    dct:description """A domain-neutral kernel of twelve contradiction primitives in four strata, located by mereology over the seven links of a recognition chain. BFO 2020 conformant. Generated from data/kernel.json by tools/build_owl.py; do not edit by hand.
+
+A contradiction is an information content entity, a continuant part of the artifact bearing it. A contradiction at the criteria locus is one that is part of a criteria specification: there is no locus-indexing relation and no crossing individual, because BFO_0000050 already does the work. An absent link is the absence of a part, never an individual carrying a status of 'absent'.
+
+Three claims are machine-checkable and fail separately. The locus mask: a contradiction of a given class, part of a specification of a kind the mask excludes, is unsatisfiable. The gating rule: a Stratum D contradiction part of an artifact with no act specification is unsatisfiable. The named types: each is a defined class, so a reasoner classifies rather than looks up."""@en ;
+    dct:creator "David R. Koepsell" ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:source "Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), \u00a76-\u00a78." ;
+    owl:versionInfo "0.2.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo/2020/bfo.owl> ,
+                <http://purl.obolibrary.org/obo/iao.owl> ,
+                <http://purl.obolibrary.org/obo/ro.owl> .
+
+# Where the imports cannot be resolved, load bfo-stub.ttl instead. That file
+# declares these IRIs and asserts no BFO axiom, which keeps the module's own
+# axioms checkable. It is not a pass on conformance: see spec/owl/README.md.
+
+#################################################################
+#    Annotation properties
+#
+#    These carry claims that are not about the world. A firing value is a rate
+#    claim, and the middle value of the gate is an empirical claim that could
+#    turn out false without anything in the ontology being wrong. They are
+#    therefore annotations and never axioms.
+#################################################################
+
+rk:firingValue a owl:AnnotationProperty ;
+    rdfs:label "firing value"@en ;
+    rdfs:comment "fires, rare, cannot_fire, no_locus or not_applicable. A prediction about what can occur, not a detection of what has."@en .
+
+rk:detectionInstrument a owl:AnnotationProperty ;
+    rdfs:label "detection instrument"@en .
+
+rk:operationalized a owl:AnnotationProperty ;
+    rdfs:label "operationalized"@en .
+
+rk:wellFormednessRationale a owl:AnnotationProperty ;
+    rdfs:label "well-formedness rationale"@en .
+
+#################################################################
+#    Object properties
+#
+#    Two are local because nothing upstream has their shape. Everything else
+#    the module uses is a BFO, IAO or RO term.
+#################################################################
+
+rk:prescribes a owl:ObjectProperty ;
+    rdfs:label "prescribes"@en ;
+    rdfs:domain obo:IAO_0000033 ;
+    rdfs:range [ a owl:Class ; owl:unionOf ( obo:BFO_0000003 obo:BFO_0000017 ) ] ;
+    rdfs:comment "Relates a directive information entity to the occurrent or realizable entity whose occurrence it directs. IAO has no relation of this shape. If one is adopted upstream, replace it and regenerate."@en .
+
+rk:conferredBy a owl:ObjectProperty ;
+    rdfs:label "conferred by"@en ;
+    rdfs:domain rk:ConferredStatusRole ;
+    rdfs:range rk:RecognitionAct ;
+    rdfs:comment "Relates a role to the process in which it came to be borne."@en .
+
+#################################################################
+#    The artifact and its specification parts
+#################################################################
+
+rk:Artifact a owl:Class ;
+    rdfs:subClassOf obo:IAO_0000030 ;
+    rdfs:label "recognition artifact"@en ;
+    obo:IAO_0000115 "An information content entity that constitutes, in whole or in part, a system of recognition: a code, a standard, a rule set, an ontology."@en .
+
+rk:Specification a owl:Class ;
+    rdfs:subClassOf obo:IAO_0000033 ;
+    rdfs:label "chain specification"@en ;
+    obo:IAO_0000115 "A directive information entity that is part of a recognition artifact and supplies one link of its chain."@en .
+
+rk:ActEmptyArtifact a owl:Class ;
+    rdfs:label "act-empty artifact"@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:Artifact
+        [ a owl:Class ; owl:complementOf
+          [ a owl:Restriction ; owl:onProperty obo:BFO_0000051 ;
+            owl:someValuesFrom rk:ActSpecification ] ] ) ] ;
+    obo:IAO_0000115 "A recognition artifact with no act specification part. Typing an individual here is a closure assertion: OWL will not conclude the absence of a part on its own."@en .
+
+#################################################################
+#    Conferred status, in two parts
+#
+#    A role alone asserts that something inheres in the bearer. A generically
+#    dependent continuant alone gives no bearer for the assertion to be made or
+#    withheld about. Only the two-part model can represent a system that
+#    records and mandates a status while declining to assert that anything
+#    inheres in anyone, which is WHO's stated position on ICD-11 Chapter 26.
+#################################################################
+
+rk:RecognitionAct a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;
+    rdfs:label "recognition act"@en ;
+    obo:IAO_0000115 "A process in which criteria are applied to facts and a status is conferred."@en .
+
+rk:ConferredStatusRole a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000023 ,
+        [ a owl:Restriction ; owl:onProperty obo:RO_0000052 ;
+          owl:someValuesFrom obo:BFO_0000004 ] ;
+    rdfs:label "conferred status role"@en ;
+    obo:IAO_0000115 "A role borne by an entity in virtue of a recognition act. Every such role is characteristic of some independent continuant: that is what having a bearer amounts to, and it is precisely what a status declaration does not assert."@en .
+
+rk:StatusDeclaration a owl:Class ;
+    rdfs:subClassOf obo:IAO_0000030 ;
+    rdfs:label "status declaration"@en ;
+    obo:IAO_0000115 "An information content entity that is about a conferred status role."@en .
+
+rk:DeclarationWithoutBorneRole a owl:Class ;
+    rdfs:label "declaration without borne role"@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:StatusDeclaration
+        [ a owl:Class ; owl:complementOf
+          [ a owl:Restriction ; owl:onProperty obo:IAO_0000136 ;
+            owl:someValuesFrom rk:ConferredStatusRole ] ] ) ] ;
+    obo:IAO_0000115 "A status declaration that is about no borne role. This class exists to make a position statable, not to be inferred: nothing will classify here without a closure axiom."@en .
+
+#################################################################
+#    One specification class per chain link
+#################################################################
+
+rk:AuthoritySpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Source of authority"@en ;
+    obo:IAO_0000115 """The source entitled to fix the criteria."""@en .
+
+rk:CriteriaSpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Criteria"@en ;
+    obo:IAO_0000115 """The substantive standard applied in the recognition act."""@en .
+
+rk:AssessorSpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Assessor in role"@en ;
+    obo:IAO_0000115 """The agent licensed by the authority to apply the criteria."""@en .
+
+rk:FactsSpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Presenting facts"@en ;
+    obo:IAO_0000115 """The state of affairs to which the criteria are applied."""@en .
+
+rk:ActSpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Recognition act"@en ;
+    obo:IAO_0000115 """The act in which criteria are applied to facts and a status is conferred."""@en .
+
+rk:EffectsSpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Effects"@en ;
+    obo:IAO_0000115 """The consequences following from the conferral."""@en .
+
+rk:RemedySpecification a owl:Class ;
+    rdfs:subClassOf rk:Specification ;
+    rdfs:label "Remedy"@en ;
+    obo:IAO_0000115 """The pathway, where the system provides one, by which a conferral can be revisited."""@en .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( rk:AuthoritySpecification rk:CriteriaSpecification rk:AssessorSpecification rk:FactsSpecification rk:ActSpecification rk:EffectsSpecification rk:RemedySpecification ) .
+
+#################################################################
+#    Contradictions: the four strata and the twelve primitives
+#################################################################
+
+rk:Contradiction a owl:Class ;
+    rdfs:subClassOf obo:IAO_0000030 ;
+    rdfs:label "structural contradiction"@en ;
+    obo:IAO_0000115 "An information content entity that is a continuant part of a recognition artifact and constitutes a structural defect in it. Not a quality: two printings of one code carry the same contradiction, so the entity is generically dependent rather than inhering in a material bearer."@en .
+
+rk:StratumAContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Model-theoretic"@en ;
+    skos:note "precondition: a formal theory; gated: false"@en ;
+    obo:IAO_0000115 """Failures of a theory relative to its models."""@en .
+
+rk:StratumBContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Definitional"@en ;
+    skos:note "precondition: a system of definitions; gated: false"@en ;
+    obo:IAO_0000115 """Failures in how terms are defined and grounded, independent of domain content."""@en .
+
+rk:StratumCContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Meta-ontological"@en ;
+    skos:note "precondition: an upper ontology; gated: false"@en ;
+    obo:IAO_0000115 """Failures of typing and grounding relative to an upper ontology."""@en .
+
+rk:StratumDContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Pragmatic"@en ;
+    skos:note "precondition: acts; gated: true"@en ;
+    obo:IAO_0000115 """Failures available only where there are acts."""@en .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( rk:StratumAContradiction rk:StratumBContradiction rk:StratumCContradiction rk:StratumDContradiction ) .
+
+rk:KA1 a owl:Class ;
+    rdfs:subClassOf rk:StratumAContradiction ;
+    rdfs:label "Inconsistency"@en ;
+    skos:notation "K-A1" ;
+    obo:IAO_0000115 """The theory admits no model; locally, a sentence and its negation are both derivable. Variants: assertional, deontic, analytic."""@en ;
+    obo:IAO_0000119 """Aristotle on non-contradiction; Schlobach and Cornet (2003); Hohfeld (1917) for the analytic variant"""@en ;
+    skos:note """formal signature: O |= ⊥ globally; locally, jointly unsatisfiable assertions over one locus"""@en ;
+    rk:wellFormednessRationale """Jointly unsatisfiable assertions can be made about any locus, including presenting facts."""@en ;
+    rk:detectionInstrument "reasoner" ;
+    rk:operationalized "False" .
+
+rk:KA2 a owl:Class ;
+    rdfs:subClassOf rk:StratumAContradiction ;
+    rdfs:label "Term Incoherence"@en ;
+    skos:notation "K-A2" ;
+    obo:IAO_0000115 """The theory is satisfiable but some term is not: a class equivalent to the empty class."""@en ;
+    obo:IAO_0000119 """Schlobach and Cornet (2003)"""@en ;
+    skos:note """formal signature: O consistent, yet O |= C ⊑ ⊥"""@en ;
+    rk:wellFormednessRationale """Requires a defined term whose satisfaction conditions can empty out. Presenting facts are asserted, not defined."""@en ;
+    rk:detectionInstrument "reasoner" ;
+    rk:operationalized "False" .
+
+rk:KA3 a owl:Class ;
+    rdfs:subClassOf rk:StratumAContradiction ;
+    rdfs:label "Indeterminacy"@en ;
+    skos:notation "K-A3" ;
+    obo:IAO_0000115 """Underconstraint: unintended models admitted, or membership undecided where practice requires a decision."""@en ;
+    obo:IAO_0000119 """Waismann (1945); Hart (1961) on open texture"""@en ;
+    skos:note """formal signature: Intended and admitted models diverge; borderline membership underivable"""@en ;
+    rk:wellFormednessRationale """Underconstraint is available wherever anything is specified at all."""@en ;
+    rk:detectionInstrument "structural" ;
+    rk:operationalized "False" .
+
+rk:KB1 a owl:Class ;
+    rdfs:subClassOf rk:StratumBContradiction ;
+    rdfs:label "Circularity"@en ;
+    skos:notation "K-B1" ;
+    obo:IAO_0000115 """Non-wellfounded definition or grounding: a term's conditions depend transitively on the term itself, or a grounding order is inverted. The temporal case is inversion projected into time."""@en ;
+    obo:IAO_0000119 """Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8."""@en ;
+    skos:note """formal signature: A cycle in the definition dependency graph, or inversion of a required grounding order"""@en ;
+    rk:wellFormednessRationale """Requires a definition or grounding order. Presenting facts supply neither."""@en ;
+    rk:detectionInstrument "reasoner_partial" ;
+    rk:operationalized "False" .
+
+rk:KB2 a owl:Class ;
+    rdfs:subClassOf rk:StratumBContradiction ;
+    rdfs:label "Equivocation"@en ;
+    skos:notation "K-B2" ;
+    obo:IAO_0000115 """One item playing incompatible roles: a term, condition, or occupant doing double duty under conflicting demands."""@en ;
+    obo:IAO_0000119 """Aristotle on equivocation"""@en ;
+    skos:note """formal signature: One element bound to two roles with conflicting satisfaction conditions"""@en ;
+    rk:wellFormednessRationale """Double duty is available at every locus, including facts, where one described state of affairs can be bound to two incompatible characterizations."""@en ;
+    rk:detectionInstrument "structural" ;
+    rk:operationalized "False" .
+
+rk:KB3 a owl:Class ;
+    rdfs:subClassOf rk:StratumBContradiction ;
+    rdfs:label "Residual Definition"@en ;
+    skos:notation "K-B3" ;
+    obo:IAO_0000115 """A term defined only by complement: membership fixed negatively, as what remains once the positive categories are exhausted."""@en ;
+    obo:IAO_0000119 """Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8."""@en ;
+    skos:note """formal signature: C ≡ ¬D₁ ⊓ ¬D₂ ⊓ … with no positive differentia"""@en ;
+    rk:wellFormednessRationale """Well-formed wherever a positive differentia is owed. An authority is designated rather than defined by complement; facts are asserted; the act is performed."""@en ;
+    rk:detectionInstrument "structural" ;
+    rk:operationalized "False" .
+
+rk:KC1 a owl:Class ;
+    rdfs:subClassOf rk:StratumCContradiction ;
+    rdfs:label "Category Violation"@en ;
+    skos:notation "K-C1" ;
+    obo:IAO_0000115 """An entity forced under disjoint upper-ontological categories: the formalized category mistake."""@en ;
+    obo:IAO_0000119 """Ryle (1949); BFO disjointness axioms (Arp, Smith, and Spear 2015)"""@en ;
+    skos:note """formal signature: a : C and a : D, C and D disjoint at the upper level"""@en ;
+    rk:wellFormednessRationale """Anything typed at all can be mistyped."""@en ;
+    rk:detectionInstrument "reasoner" ;
+    rk:operationalized "False" .
+
+rk:KC2 a owl:Class ;
+    rdfs:subClassOf rk:StratumCContradiction ;
+    rdfs:label "Level Confusion"@en ;
+    skos:notation "K-C2" ;
+    obo:IAO_0000115 """Representational levels conflated: a universal treated as a particular, a class as an instance, use as mention."""@en ;
+    obo:IAO_0000119 """Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8."""@en ;
+    skos:note """formal signature: One element occupying two levels whose disciplines conflict"""@en ;
+    rk:wellFormednessRationale """Level conflation is available wherever there is representation."""@en ;
+    rk:detectionInstrument "structural" ;
+    rk:operationalized "False" .
+
+rk:KC3 a owl:Class ;
+    rdfs:subClassOf rk:StratumCContradiction ;
+    rdfs:label "Dependence Violation"@en ;
+    skos:notation "K-C3" ;
+    obo:IAO_0000115 """A dependent entity posited without its bearer, or a grounding link severed, including where one direction of a mutual dependence is enforced and the other denied."""@en ;
+    obo:IAO_0000119 """Husserl on foundation, as developed by Smith; BFO specific dependence"""@en ;
+    skos:note """formal signature: A specifically dependent continuant without a bearer"""@en ;
+    rk:wellFormednessRationale """Requires a dependent entity and a bearer relation. Presenting facts are the bearer side, not the dependent side."""@en ;
+    rk:detectionInstrument "reasoner_partial" ;
+    rk:operationalized "False" .
+
+rk:KD1 a owl:Class ;
+    rdfs:subClassOf rk:StratumDContradiction ;
+    rdfs:label "Falsification"@en ;
+    skos:notation "K-D1" ;
+    obo:IAO_0000115 """Assertion and world mismatched: triggering conditions fabricated, suppressed, or misrepresented. The artifact is coherent; its contact with reality is corrupted."""@en ;
+    obo:IAO_0000119 """the law of evidence as an institutionalized detection apparatus"""@en ;
+    skos:note """formal signature: An asserted triggering condition with no worldly truthmaker"""@en ;
+    rk:wellFormednessRationale """Requires something asserted about the world. Authority, criteria and role are conferred rather than asserted."""@en ;
+    rk:detectionInstrument "world_facing" ;
+    rk:operationalized "False" .
+
+rk:KD2 a owl:Class ;
+    rdfs:subClassOf rk:StratumDContradiction ;
+    rdfs:label "Performative Self-Defeat"@en ;
+    skos:notation "K-D2" ;
+    obo:IAO_0000115 """An act whose success conditions are undermined by its own performance: a norm whose compliance conditions preclude compliance."""@en ;
+    obo:IAO_0000119 """Hintikka on the performative cogito; Apel and Habermas on performative contradiction"""@en ;
+    skos:note """formal signature: Satisfying the act's content entails failure of its success conditions"""@en ;
+    rk:wellFormednessRationale """Requires an act with success conditions, or a norm stating compliance conditions."""@en ;
+    rk:detectionInstrument "process_or_text_internal" ;
+    rk:operationalized "partial" .
+
+rk:KD3 a owl:Class ;
+    rdfs:subClassOf rk:StratumDContradiction ;
+    rdfs:label "Modal Clash"@en ;
+    skos:notation "K-D3" ;
+    obo:IAO_0000115 """A capacity present in structure but blocked in practice: possible according to the artifact, unrealizable in the institution implementing it. (de jure / de facto)"""@en ;
+    obo:IAO_0000119 """Pound (1910) on law in books versus law in action"""@en ;
+    skos:note """formal signature: ◇-in-structure with ¬◇-in-practice for the same capacity"""@en ;
+    rk:wellFormednessRationale """Requires a capacity. Presenting facts confer none."""@en ;
+    rk:detectionInstrument "process_or_text_internal" ;
+    rk:operationalized "True" .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( rk:KA1 rk:KA2 rk:KA3 rk:KB1 rk:KB2 rk:KB3 rk:KC1 rk:KC2 rk:KC3 rk:KD1 rk:KD2 rk:KD3 ) .
+
+#################################################################
+#    Artifact kinds
+#
+#    The same coordinates carry different names in different kinds of system,
+#    so the kind is part of what a named type is defined by.
+#################################################################
+
+rk:Classification a owl:Class ;
+    rdfs:subClassOf rk:Artifact ;
+    rdfs:label "classification"@en ;
+    skos:notation "classification" .
+
+rk:LegalOrder a owl:Class ;
+    rdfs:subClassOf rk:Artifact ;
+    rdfs:label "legal order"@en ;
+    skos:notation "legal_order" .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( rk:Classification rk:LegalOrder ) .
+
+#################################################################
+#    The locus mask
+#
+#    A contradiction of a given class, part of a specification of a kind the
+#    mask excludes, is unsatisfiable. This is one of the two negative tests:
+#    spec/owl/mask-violation.ttl must make the ontology inconsistent.
+#################################################################
+
+# 17 excluded coordinates.
+
+# K-A2 is not well-formed at facts.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KA2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:FactsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-B1 is not well-formed at facts.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KB1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:FactsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-B3 is not well-formed at authority.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KB3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AuthoritySpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-B3 is not well-formed at facts.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KB3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:FactsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-B3 is not well-formed at act.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KB3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:ActSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-C3 is not well-formed at facts.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KC3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:FactsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D1 is not well-formed at artifact.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD1
+        [ a owl:Class ; owl:intersectionOf (
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Artifact ]
+        [ a owl:Class ; owl:complementOf
+          [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+            owl:someValuesFrom rk:Specification ] ] ) ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D1 is not well-formed at authority.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AuthoritySpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D1 is not well-formed at criteria.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D1 is not well-formed at assessor.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AssessorSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D2 is not well-formed at artifact.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD2
+        [ a owl:Class ; owl:intersectionOf (
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Artifact ]
+        [ a owl:Class ; owl:complementOf
+          [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+            owl:someValuesFrom rk:Specification ] ] ) ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D2 is not well-formed at authority.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AuthoritySpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D2 is not well-formed at assessor.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AssessorSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D2 is not well-formed at facts.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:FactsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D2 is not well-formed at effects.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:EffectsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D3 is not well-formed at artifact.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD3
+        [ a owl:Class ; owl:intersectionOf (
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Artifact ]
+        [ a owl:Class ; owl:complementOf
+          [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+            owl:someValuesFrom rk:Specification ] ] ) ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+# K-D3 is not well-formed at facts.
+[ a owl:Class ; owl:intersectionOf (
+        rk:KD3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:FactsSpecification ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+#################################################################
+#    The gating rule
+#
+#    Stratum D presupposes acts. A pragmatic contradiction part of an artifact
+#    with no act specification is unsatisfiable. This is the other negative
+#    test: spec/owl/gating-violation.ttl must make the ontology inconsistent.
+#
+#    The two negative tests fail separately, which is why there are two.
+#################################################################
+
+[ a owl:Class ; owl:intersectionOf (
+        rk:StratumDContradiction
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:ActEmptyArtifact ] ) ]
+    rdfs:subClassOf owl:Nothing .
+
+#################################################################
+#    The named types
+#
+#    Each is a defined class: a reasoner classifies a modal clash part of a
+#    remedy specification, in a legal order, as a repair failure without being
+#    told. A domain typology is a theorem of the product, and this is what that
+#    amounts to in practice.
+#
+#    The kind is part of the definition. K-B1 at criteria is a Temporal
+#    Contradiction in a legal order and a Criterion Circularity in a
+#    classification; omitting the kind would make those two classes equivalent.
+#################################################################
+
+rk:JurisdictionalContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Jurisdictional Contradiction"@en ;
+    skos:notation "JC" ;
+    obo:IAO_0000115 "K-A1 located at the effects locus in a legal order."@en ;
+    obo:IAO_0000119 """Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KA1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:EffectsSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:LegalOrder ] ) ] .
+
+rk:TemporalContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Temporal Contradiction"@en ;
+    skos:notation "TC" ;
+    obo:IAO_0000115 "K-B1 located at the criteria locus in a legal order."@en ;
+    obo:IAO_0000119 """Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KB1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:LegalOrder ] ) ] .
+
+rk:AuthorityInflation a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Authority Inflation"@en ;
+    skos:notation "AI" ;
+    obo:IAO_0000115 "K-B2 located at the authority locus in a legal order."@en ;
+    obo:IAO_0000119 """Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KB2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AuthoritySpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:LegalOrder ] ) ] .
+
+rk:ConferralFailure a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Conferral Failure"@en ;
+    skos:notation "CF" ;
+    obo:IAO_0000115 "K-C3 located at the assessor locus in a legal order."@en ;
+    obo:IAO_0000119 """Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KC3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:AssessorSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:LegalOrder ] ) ] .
+
+rk:RepairFailure a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Repair Failure"@en ;
+    skos:notation "RF" ;
+    obo:IAO_0000115 "K-D3 located at the remedy locus in a legal order."@en ;
+    obo:IAO_0000119 """Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KD3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:RemedySpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:LegalOrder ] ) ] .
+
+rk:DisjointnessOverlapFailure a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Disjointness / Overlap Failure"@en ;
+    skos:notation "CT-1" ;
+    obo:IAO_0000115 "K-A1 located at the criteria locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KA1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .
+
+rk:CriterionCircularity a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Criterion Circularity"@en ;
+    skos:notation "CT-2" ;
+    obo:IAO_0000115 "K-B1 located at the criteria locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KB1
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .
+
+rk:ThresholdPolytheticIncoherence a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Threshold / Polythetic Incoherence"@en ;
+    skos:notation "CT-3" ;
+    obo:IAO_0000115 "K-A3 located at the criteria locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KA3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .
+
+rk:CriterionDoubleDuty a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Criterion Double-Duty"@en ;
+    skos:notation "CT-4" ;
+    obo:IAO_0000115 "K-B2 located at the criteria locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KB2
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .
+
+rk:ResidualIndeterminacy a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Residual Indeterminacy"@en ;
+    skos:notation "CT-5" ;
+    obo:IAO_0000115 "K-B3 located at the criteria locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KB3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .
+
+rk:RecognitionFailure a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Recognition Failure"@en ;
+    skos:notation "CT-6" ;
+    obo:IAO_0000115 "K-C3 located at the criteria locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KC3
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:CriteriaSpecification ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .
+
+rk:TypeContradiction a owl:Class ;
+    rdfs:subClassOf rk:Contradiction ;
+    rdfs:label "Type Contradiction"@en ;
+    skos:notation "CT-7" ;
+    obo:IAO_0000115 "K-C1 located at the artifact locus in a classification."@en ;
+    obo:IAO_0000119 """Paper §7.3 Table 8."""@en ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+        rk:KC1
+        [ a owl:Class ; owl:intersectionOf (
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Artifact ]
+        [ a owl:Class ; owl:complementOf
+          [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+            owl:someValuesFrom rk:Specification ] ] ) ]
+        [ a owl:Restriction ; owl:onProperty obo:BFO_0000050 ;
+          owl:someValuesFrom rk:Classification ] ) ] .

@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "label": "Gene Ontology fragment (demo corpus)",
+    "corpus_id": "go-demo",
+    "cell": "reference ontology",
+    "copyright": "Gene Ontology content is released by the Gene Ontology Consortium under CC BY 4.0. Term identifiers and labels are used here with attribution.",
+    "attribution": "The Gene Ontology Consortium. See geneontology.org. Licensed CC BY 4.0.",
+    "text_status": "prose rendering",
+    "text_status_note": "GO is distributed as OBO and OWL, not as prose. Each provision below is a PROSE RENDERING of is_a and part_of edges drawn from a small fragment of the ontology, written so that the entity-relation extractor has surface forms to match. Definitions are paraphrased, not quoted. This fixture demonstrates the extractor pair; it is not a substitute for reading the ontology, and no result about GO should be reported from it.",
+    "authoritative_source": "http://geneontology.org/docs/download-ontology/",
+    "purpose": "The mirror image of the FRCP control (paper §11.1). Over this corpus the entity-relation extractor yields claims and the norm-tuple extractor yields almost nothing, because a reference ontology asserts what kinds there are and issues no directives. Neither extractor is better than the other; each is built for a different kind of structure, and running both over both corpora is what makes the mismatch visible rather than a matter of assertion.",
+    "paper_reference": "Cell 1 of the registered design (paper §10.1 Table 11): no chain, Stratum D predicted to produce no findings."
+  },
+  "provisions": [
+    {
+      "id": "go-0008150",
+      "locator": "GO:0008150",
+      "heading": "biological_process",
+      "chunk": 1,
+      "text": "A biological process is a kind of occurrent. A biological process consists of one or more organised assemblies of molecular functions. A biological process is not a subclass of molecular function and is not a subclass of cellular component."
+    },
+    {
+      "id": "go-0003674",
+      "locator": "GO:0003674",
+      "heading": "molecular_function",
+      "chunk": 1,
+      "text": "A molecular function is a kind of activity carried out by a gene product at the molecular level. A molecular function is realized in a biological process. A molecular function depends on the gene product that bears it."
+    },
+    {
+      "id": "go-0005575",
+      "locator": "GO:0005575",
+      "heading": "cellular_component",
+      "chunk": 1,
+      "text": "A cellular component is a kind of material entity. A cellular component is part of a cell or is located in the extracellular environment. A cell is composed of cellular components."
+    },
+    {
+      "id": "go-0012501",
+      "locator": "GO:0012501",
+      "heading": "programmed cell death",
+      "chunk": 2,
+      "text": "Programmed cell death is a kind of cell death. Cell death is a kind of cellular process. A cellular process is a kind of biological process."
+    },
+    {
+      "id": "go-0006915",
+      "locator": "GO:0006915",
+      "heading": "apoptotic process",
+      "chunk": 2,
+      "text": "An apoptotic process is a kind of programmed cell death. An apoptotic process is part of a broader tissue remodelling process in a multicellular organism. An apoptotic process depends on the cell that undergoes it."
+    },
+    {
+      "id": "go-0016301",
+      "locator": "GO:0016301",
+      "heading": "kinase activity",
+      "chunk": 3,
+      "text": "Kinase activity is a kind of transferase activity. Transferase activity is a kind of catalytic activity. Catalytic activity is a kind of molecular function. Kinase activity is borne by a gene product."
+    },
+    {
+      "id": "go-0005634",
+      "locator": "GO:0005634",
+      "heading": "nucleus",
+      "chunk": 3,
+      "text": "A nucleus is a kind of membrane-bounded organelle. A membrane-bounded organelle is a kind of organelle. An organelle is a kind of cellular component. A nucleus is part of a cell."
+    },
+    {
+      "id": "go-0006281",
+      "locator": "GO:0006281",
+      "heading": "DNA repair",
+      "chunk": 4,
+      "text": "DNA repair is a kind of cellular response to DNA damage stimulus. DNA repair is part of a DNA metabolic process. A DNA metabolic process is a kind of cellular process."
+    }
+  ]
+}

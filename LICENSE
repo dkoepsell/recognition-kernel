@@ -1,0 +1,36 @@
+Two licences apply to this repository.
+
+CODE  (src/, tools/, tests/, examples/run_all.py)
+    Apache License 2.0. Full text: https://www.apache.org/licenses/LICENSE-2.0
+
+SPECIFICATION AND DOCUMENTATION  (spec/, data/kernel.json, README.md,
+examples/**/NOTES.md, examples/**/*.chain.json)
+    Creative Commons Attribution 4.0 International (CC BY 4.0).
+    Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+    Attribution: David R. Koepsell, "The Recognition Kernel", v0.1.0.
+
+THIRD-PARTY MATERIAL IN examples/
+
+    examples/frcp/corpus/frcp_demo.json
+        Abridged from the Federal Rules of Civil Procedure, a work of the
+        United States government and not subject to copyright. The text is
+        abridged and normalised for demonstration and is NOT authoritative.
+
+    examples/go/corpus/go_demo.json
+        A prose rendering of is_a and part_of edges from a small fragment of
+        the Gene Ontology, with paraphrased definitions. Gene Ontology content
+        is released by the Gene Ontology Consortium under CC BY 4.0. See
+        geneontology.org.
+
+    examples/icd11/
+        NO ICD-11 TEXT IS REPRODUCED. ICD-11 is copyright the World Health
+        Organization. The chain file records structural facts about the
+        classification's published architecture, with locators, and nothing
+        more. Obtain ICD-11 from WHO under WHO's terms.
+
+    examples/cfr205/
+        No corpus ships. 7 CFR Part 205 is a work of the United States
+        government and not subject to copyright.
+
+BFO IRIs referenced in spec/owl/ belong to the Basic Formal Ontology, released
+under CC BY 4.0 by the BFO development team.

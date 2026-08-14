@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "The Recognition Kernel"
+message: "If you use this software or specification, please cite both the software and the paper it implements."
+type: software
+authors:
+  - family-names: Koepsell
+    given-names: David R.
+    email: drkoepsell@tamu.edu
+    affiliation: "SEAL Lab, Texas A&M University"
+version: 0.1.0
+license: Apache-2.0
+abstract: >-
+  A reference implementation of a domain-neutral kernel of twelve contradiction
+  primitives in four strata, indexed over the seven links of a recognition chain.
+  Ships a formal specification (OWL 2 DL, JSON Schema, prose, worked examples),
+  a rule-based norm and chain extractor with a K-D3 detector, and a domain
+  typology generator that returns the full typology, the gated profile, and the
+  predicted failure modes for any domain chain.
+references:
+  - type: article
+    title: "The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains"
+    authors:
+      - family-names: Koepsell
+        given-names: David R.
+    notes: "Working draft. The specification in spec/SPEC.md implements sections 5 through 8."

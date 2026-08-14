@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sool.davidkoepsell.com/schema/finding.schema.json",
+  "title": "Detector Finding",
+  "description": "A single candidate contradiction returned by a detector. The provenance field defaults to 'undetermined' and must be set by hand: no detector may attribute a defect to a source rather than to the analyst's translation of it (paper §12).",
+  "type": "object",
+  "required": ["finding_id", "primitive", "locus", "status", "provenance", "detector"],
+  "properties": {
+    "finding_id": {"type": "string"},
+    "primitive": {"type": "string", "pattern": "^K-[A-Z]\\d+$"},
+    "locus": {"type": "string"},
+    "status": {
+      "type": "string",
+      "enum": ["candidate", "confirmed", "withdrawn", "external"],
+      "description": "candidate: returned by a detector, not adjudicated. confirmed: adjudicated against source text or verified by a reasoner. withdrawn: retracted with reason. external: the relevant structure lies in an instrument outside the corpus and cannot be scored as a source-level failure."
+    },
+    "provenance": {
+      "type": "string",
+      "enum": ["undetermined", "source", "translation"],
+      "default": "undetermined",
+      "description": "Whether the defect belongs to the source or to the extraction. Defaults to undetermined; a detector must never emit 'source'."
+    },
+    "detector": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string"},
+        "version": {"type": "string"},
+        "parameters": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "capacity": {
+      "type": "object",
+      "description": "For K-D3: the capacity-conferring provision.",
+      "properties": {
+        "norm_id": {"type": "string"},
+        "bearer": {"type": ["string", "null"]},
+        "action": {"type": ["string", "null"]},
+        "locator": {"type": "string"},
+        "quote": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "pathway_matches": {
+      "type": "array",
+      "description": "Provisions accepted as invocation pathways. The fan-out of this list is reported in aggregate: a rate produced by a matcher whose fan-out is unreported cannot be interpreted (paper §10.4).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "locator": {"type": "string"},
+          "topical_evidence": {"type": "string"},
+          "procedural_markers": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "external_reference": {
+      "type": ["string", "null"],
+      "description": "The outside instrument on which the pathway depends, where status is 'external'."
+    },
+    "duplicate_of": {"type": ["string", "null"]},
+    "note": {"type": "string"},
+    "adjudication": {
+      "type": "object",
+      "properties": {
+        "adjudicated_by": {"type": "string"},
+        "adjudicated_on": {"type": "string"},
+        "outcome": {"type": "string"},
+        "reason": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# Generated outputs. `make demo` regenerates everything here.
+out/
+
+# Cached copies of BFO, IAO and RO, for `make bfo` without a network. These are
+# upstream artifacts, not ours: fetch them rather than vendoring them into the
+# history. tools/check_bfo.py resolves them over the network by default.
+vendor/
+
+# Windows/WSL alternate-data-stream metadata.
+*:Zone.Identifier
+*Zone.Identifier
+
+# Local Claude Code settings (machine-specific).
+.claude/settings.local.json

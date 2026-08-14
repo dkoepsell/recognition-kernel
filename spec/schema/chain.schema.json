@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sool.davidkoepsell.com/schema/chain.schema.json",
+  "title": "Recognition Chain",
+  "description": "The seven-link recognition chain instantiated for one system, with a status per link. The status is the only input the gating rule consumes. Statuses are assigned by hand with evidence locators and committed before any detector is run.",
+  "type": "object",
+  "required": [
+    "chain_id",
+    "system",
+    "links"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "chain_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+    },
+    "system": {
+      "type": "object",
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "corpus": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "declared_kind": {
+          "$ref": "#/$defs/systemKind",
+          "description": "The analyst's committed classification. The generator computes a kind independently from link statuses; a mismatch is reported, never silently reconciled."
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "assigned_by": {
+      "type": "string"
+    },
+    "assigned_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "committed_before_detection": {
+      "type": "boolean",
+      "description": "True if this chain was fixed before detectors were run over the corpus (paper §10.1)."
+    },
+    "annotator_agreement": {
+      "type": "object",
+      "description": "Per-link agreement between independent annotators. Paper §13 records that this has not been run; the field exists so that its absence is visible rather than assumed.",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "links": {
+      "type": "object",
+      "required": [
+        "authority",
+        "criteria",
+        "assessor",
+        "facts",
+        "act",
+        "effects",
+        "remedy"
+      ],
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/link"
+        },
+        "criteria": {
+          "$ref": "#/$defs/link"
+        },
+        "assessor": {
+          "$ref": "#/$defs/link"
+        },
+        "facts": {
+          "$ref": "#/$defs/link"
+        },
+        "act": {
+          "$ref": "#/$defs/link"
+        },
+        "effects": {
+          "$ref": "#/$defs/link"
+        },
+        "remedy": {
+          "$ref": "#/$defs/link"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "systemKind": {
+      "type": "string",
+      "enum": [
+        "reference_ontology",
+        "classification",
+        "certification_scheme",
+        "legal_order",
+        "other"
+      ]
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "internal",
+            "external",
+            "absent"
+          ],
+          "description": "internal: the system specifies the link and it is carried out under the system's own authority. external: the link occurs but is neither specified nor governed by the system. absent: the system has no such link at all."
+        },
+        "filler": {
+          "type": "string",
+          "description": "What occupies the link in this domain, e.g. 'judge, official'."
+        },
+        "evidence": {
+          "type": "array",
+          "description": "Locators supporting the status assignment. Required in practice for any chain used in the empirical design.",
+          "items": {
+            "type": "object",
+            "required": [
+              "locator"
+            ],
+            "properties": {
+              "locator": {
+                "type": "string"
+              },
+              "quote": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "specification": {
+          "type": "string",
+          "enum": [
+            "internal",
+            "external",
+            "absent"
+          ],
+          "description": "Optional. Whether the system SPECIFIES this link, as distinct from whether it performs it. `status` is the performance question and is the only field the gating rule consumes. The two come apart at exactly the place the framework cares about: a diagnostic manual specifies criteria in full (specification internal) but does not apply them under its own authority (status external). Recording only one of the two makes the criteria layer of a classification look either thinner or thicker than it is."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

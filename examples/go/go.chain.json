@@ -1,0 +1,59 @@
+{
+  "$schema": "../../spec/schema/chain.schema.json",
+  "chain_id": "go",
+  "system": {
+    "label": "Gene Ontology",
+    "corpus": "examples/go/corpus/go_demo.json",
+    "version": "demo fixture",
+    "declared_kind": "reference_ontology",
+    "license": "Gene Ontology content is released by the GO Consortium under CC BY 4.0. The fixture in this repository is a prose rendering of a small fragment of the is_a and part_of graph, with attribution.",
+    "notes": "Cell 1 of the registered design (paper §10.1 Table 11). The act-empty case. Predicted Stratum D: no findings. If Stratum D fires here, the gating rule is false (§10.4)."
+  },
+  "assigned_by": "hand assignment",
+  "committed_before_detection": true,
+  "links": {
+    "authority": {
+      "status": "absent",
+      "confidence": "high",
+      "note": "The GO Consortium curates the ontology, but the ontology does not confer on anyone an entitlement to fix criteria by which statuses are conferred on cases. Curatorial governance of a description is not a source of authority in the sense the chain requires. This is the distinction most often collapsed when assigning a chain to a reference ontology, and collapsing it would convert every scientific ontology into an institution.",
+      "specification": "absent"
+    },
+    "criteria": {
+      "status": "absent",
+      "confidence": "medium",
+      "note": "GO term definitions are definitions, not criteria for a conferral. They state what a kind is, not what must be shown before a status is granted. Recorded as absent for that reason; an analyst who disagrees should record it as internal and say why, since the choice is visible in the generated profile and changes nothing in Stratum D. Specification is recorded as internal because GO does define its terms; performance is absent because nothing is applied to a case. The pair makes the reference-ontology row legible: thick definitional content, no chain.",
+      "specification": "internal"
+    },
+    "assessor": {
+      "status": "absent",
+      "confidence": "high",
+      "note": "A curator annotating a gene product is not an assessor in role conferring a status on a case. No one is licensed by GO to decide anything about anyone.",
+      "specification": "absent"
+    },
+    "facts": {
+      "status": "absent",
+      "confidence": "high",
+      "note": "GO describes rather than adjudicates. There are no presenting facts because there is no proceeding.",
+      "specification": "absent"
+    },
+    "act": {
+      "status": "absent",
+      "confidence": "high",
+      "note": "No recognition act. This single status is what makes the system act-empty and what bars every Stratum D crossing.",
+      "specification": "absent"
+    },
+    "effects": {
+      "status": "absent",
+      "confidence": "high",
+      "note": "Nothing follows from a GO annotation as a matter of conferral. Downstream scientific use is not an effect of a status.",
+      "specification": "absent"
+    },
+    "remedy": {
+      "status": "absent",
+      "confidence": "high",
+      "note": "Term obsoletion and revision are curation, not repair of a conferral. There is no conferral to revisit.",
+      "specification": "absent"
+    }
+  },
+  "provenance": "Assigned by inspection. The point of the cell is not that GO is well built. An empty pragmatic stratum is a diagnosis of kind, not a clean audit: it says the artifact describes rather than decides. GO can still be inconsistent, circular, or category-violating, and Strata A, B and C fire here exactly as they do for a legal code."
+}

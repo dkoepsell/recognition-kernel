@@ -1,0 +1,214 @@
+{
+  "meta": {
+    "label": "Federal Rules of Civil Procedure (demo corpus)",
+    "corpus_id": "frcp-demo",
+    "cell": "legal system",
+    "copyright": "The Federal Rules of Civil Procedure are a work of the United States government and are not subject to copyright.",
+    "text_status": "abridged",
+    "text_status_note": "Provisions are abridged and lightly normalised for demonstration. Ellipses mark omitted text. This corpus is a DEMONSTRATION FIXTURE, not an authoritative text, and no result computed from it should be reported as a result about the Federal Rules. Run tools/fetch_frcp.py to build a corpus from an authoritative source before reporting anything.",
+    "authoritative_sources": [
+      "https://www.uscourts.gov/rules-policies/current-rules-practice-procedure",
+      "https://www.law.cornell.edu/rules/frcp"
+    ],
+    "provisions_note": "Selected to exercise the extractor and the K-D3 detector: capacities with pathways in the corpus, capacities whose pathway lies outside it, and capacities with no pathway present.",
+    "paper_reference": "Cell 4 of the registered design (paper §10.1 Table 11): act-thick, repair-thick, Stratum D predicted to fire."
+  },
+  "provisions": [
+    {
+      "id": "frcp-4m",
+      "locator": "Rule 4(m)",
+      "heading": "Time Limit for Service",
+      "chunk": 1,
+      "text": "If a defendant is not served within 90 days after the complaint is filed, the court, on motion or on its own after notice to the plaintiff, must dismiss the action without prejudice against that defendant or order that service be made within a specified time. But if the plaintiff shows good cause for the failure, the court must extend the time for service for an appropriate period."
+    },
+    {
+      "id": "frcp-6b",
+      "locator": "Rule 6(b)(1)",
+      "heading": "Extending Time",
+      "chunk": 1,
+      "text": "When an act may or must be done within a specified time, the court may, for good cause, extend the time with or without motion or notice if the court acts, or if a request is made, before the original time or its extension expires; or on motion made after the time has expired if the party failed to act because of excusable neglect."
+    },
+    {
+      "id": "frcp-8a",
+      "locator": "Rule 8(a)",
+      "heading": "Claim for Relief",
+      "chunk": 2,
+      "text": "A pleading that states a claim for relief must contain a short and plain statement of the grounds for the court's jurisdiction, a short and plain statement of the claim showing that the pleader is entitled to relief, and a demand for the relief sought, which may include relief in the alternative or different types of relief."
+    },
+    {
+      "id": "frcp-11c2",
+      "locator": "Rule 11(c)(2)",
+      "heading": "Motion for Sanctions",
+      "chunk": 2,
+      "text": "A motion for sanctions must be made separately from any other motion and must describe the specific conduct that allegedly violates Rule 11(b). The motion must be served under Rule 5, but it must not be filed or be presented to the court if the challenged paper, claim, defense, contention, or denial is withdrawn or appropriately corrected within 21 days after service."
+    },
+    {
+      "id": "frcp-12a",
+      "locator": "Rule 12(a)(1)(A)(i)",
+      "heading": "Time to Serve a Responsive Pleading",
+      "chunk": 3,
+      "text": "A defendant must serve an answer within 21 days after being served with the summons and complaint."
+    },
+    {
+      "id": "frcp-12b",
+      "locator": "Rule 12(b)",
+      "heading": "How to Present Defenses",
+      "chunk": 3,
+      "text": "Every defense to a claim for relief in any pleading must be asserted in the responsive pleading if one is required. But a party may assert the following defenses by motion: lack of subject-matter jurisdiction; lack of personal jurisdiction; improper venue; insufficient process; insufficient service of process; failure to state a claim upon which relief can be granted; and failure to join a party under Rule 19. A motion asserting any of these defenses must be made before pleading if a responsive pleading is allowed."
+    },
+    {
+      "id": "frcp-13a",
+      "locator": "Rule 13(a)",
+      "heading": "Compulsory Counterclaim",
+      "chunk": 4,
+      "text": "A pleading must state as a counterclaim any claim that, at the time of its service, the pleader has against an opposing party if the claim arises out of the transaction or occurrence that is the subject matter of the opposing party's claim and does not require adding another party over whom the court cannot acquire jurisdiction."
+    },
+    {
+      "id": "frcp-15a2",
+      "locator": "Rule 15(a)(2)",
+      "heading": "Amendments with Leave",
+      "chunk": 4,
+      "text": "In all other cases, a party may amend its pleading only with the opposing party's written consent or the court's leave. The court should freely give leave when justice so requires."
+    },
+    {
+      "id": "frcp-18a",
+      "locator": "Rule 18(a)",
+      "heading": "Joinder of Claims",
+      "chunk": 5,
+      "text": "A party asserting a claim, counterclaim, crossclaim, or third-party claim may join, as independent or alternative claims, as many claims as it has against an opposing party."
+    },
+    {
+      "id": "frcp-18b",
+      "locator": "Rule 18(b)",
+      "heading": "Joinder of Contingent Claims",
+      "chunk": 5,
+      "text": "A party may join two claims even though one of them is contingent on the disposition of the other; but the court may grant relief only in accordance with the parties' relative substantive rights."
+    },
+    {
+      "id": "frcp-19a",
+      "locator": "Rule 19(a)(1)",
+      "heading": "Required Joinder",
+      "chunk": 6,
+      "text": "A person who is subject to service of process and whose joinder will not deprive the court of subject-matter jurisdiction must be joined as a party if in that person's absence the court cannot accord complete relief among existing parties, or that person claims an interest relating to the subject of the action and is so situated that disposing of the action in the person's absence may impair or impede the person's ability to protect the interest."
+    },
+    {
+      "id": "frcp-22a",
+      "locator": "Rule 22(a)(1)",
+      "heading": "Interpleader",
+      "chunk": 6,
+      "text": "Persons with claims that may expose a plaintiff to double or multiple liability may be joined as defendants and required to interplead. Joinder for interpleader is proper even though the claims of the several claimants, or the titles on which their claims depend, lack a common origin or are adverse and independent rather than identical."
+    },
+    {
+      "id": "frcp-23a",
+      "locator": "Rule 23(a)",
+      "heading": "Prerequisites",
+      "chunk": 7,
+      "text": "One or more members of a class may sue or be sued as representative parties on behalf of all members only if the class is so numerous that joinder of all members is impracticable, there are questions of law or fact common to the class, the claims or defenses of the representative parties are typical of the claims or defenses of the class, and the representative parties will fairly and adequately protect the interests of the class."
+    },
+    {
+      "id": "frcp-23c1",
+      "locator": "Rule 23(c)(1)(A)",
+      "heading": "Certification Order",
+      "chunk": 7,
+      "text": "At an early practicable time after a person sues or is sued as a class representative, the court must determine by order whether to certify the action as a class action."
+    },
+    {
+      "id": "frcp-23g1",
+      "locator": "Rule 23(g)(1)",
+      "heading": "Class Counsel",
+      "chunk": 7,
+      "text": "Unless a statute provides otherwise, a court that certifies a class must appoint class counsel. In appointing class counsel, the court must consider the work counsel has done in identifying or investigating potential claims in the action, counsel's experience in handling class actions, counsel's knowledge of the applicable law, and the resources that counsel will commit to representing the class."
+    },
+    {
+      "id": "frcp-24a",
+      "locator": "Rule 24(a)",
+      "heading": "Intervention of Right",
+      "chunk": 8,
+      "text": "On timely motion, the court must permit anyone to intervene who is given an unconditional right to intervene by a federal statute, or who claims an interest relating to the property or transaction that is the subject of the action and is so situated that disposing of the action may as a practical matter impair or impede the movant's ability to protect its interest, unless existing parties adequately represent that interest."
+    },
+    {
+      "id": "frcp-26c1",
+      "locator": "Rule 26(c)(1)",
+      "heading": "Protective Orders",
+      "chunk": 9,
+      "text": "A party or any person from whom discovery is sought may move for a protective order in the court where the action is pending. The motion must include a certification that the movant has in good faith conferred or attempted to confer with other affected parties in an effort to resolve the dispute without court action. The court may, for good cause, issue an order to protect a party or person from annoyance, embarrassment, oppression, or undue burden or expense."
+    },
+    {
+      "id": "frcp-37a1",
+      "locator": "Rule 37(a)(1)",
+      "heading": "Motion to Compel",
+      "chunk": 9,
+      "text": "On notice to other parties and all affected persons, a party may move for an order compelling disclosure or discovery. The motion must include a certification that the movant has in good faith conferred or attempted to confer with the person or party failing to make disclosure or discovery in an effort to obtain it without court action."
+    },
+    {
+      "id": "frcp-41a2",
+      "locator": "Rule 41(a)(2)",
+      "heading": "Dismissal by Court Order",
+      "chunk": 10,
+      "text": "Except as provided in Rule 41(a)(1), an action may be dismissed at the plaintiff's request only by court order, on terms that the court considers proper. If a defendant has pleaded a counterclaim before being served with the plaintiff's motion to dismiss, the action may be dismissed over the defendant's objection only if the counterclaim can remain pending for independent adjudication."
+    },
+    {
+      "id": "frcp-55a",
+      "locator": "Rule 55(a)",
+      "heading": "Entering a Default",
+      "chunk": 11,
+      "text": "When a party against whom a judgment for affirmative relief is sought has failed to plead or otherwise defend, and that failure is shown by affidavit or otherwise, the clerk must enter the party's default."
+    },
+    {
+      "id": "frcp-55c",
+      "locator": "Rule 55(c)",
+      "heading": "Setting Aside a Default",
+      "chunk": 11,
+      "text": "The court may set aside an entry of default for good cause, and it may set aside a final default judgment under Rule 60(b)."
+    },
+    {
+      "id": "frcp-56a",
+      "locator": "Rule 56(a)",
+      "heading": "Motion for Summary Judgment",
+      "chunk": 12,
+      "text": "A party may move for summary judgment, identifying each claim or defense, or the part of each claim or defense, on which summary judgment is sought. The court shall grant summary judgment if the movant shows that there is no genuine dispute as to any material fact and the movant is entitled to judgment as a matter of law."
+    },
+    {
+      "id": "frcp-59b",
+      "locator": "Rule 59(b)",
+      "heading": "Time to File a Motion for a New Trial",
+      "chunk": 13,
+      "text": "A motion for a new trial must be filed no later than 28 days after the entry of judgment."
+    },
+    {
+      "id": "frcp-60b",
+      "locator": "Rule 60(b)",
+      "heading": "Relief from a Judgment or Order",
+      "chunk": 13,
+      "text": "On motion and just terms, the court may relieve a party or its legal representative from a final judgment, order, or proceeding for mistake, inadvertence, surprise, or excusable neglect; newly discovered evidence that, with reasonable diligence, could not have been discovered in time to move for a new trial; fraud, misrepresentation, or misconduct by an opposing party; the judgment is void; the judgment has been satisfied, released, or discharged; or any other reason that justifies relief."
+    },
+    {
+      "id": "frcp-60c1",
+      "locator": "Rule 60(c)(1)",
+      "heading": "Timing of a Rule 60(b) Motion",
+      "chunk": 13,
+      "text": "A motion under Rule 60(b) must be made within a reasonable time, and for reasons of mistake, newly discovered evidence, and fraud no more than a year after the entry of the judgment or order or the date of the proceeding."
+    },
+    {
+      "id": "frcp-62f",
+      "locator": "Rule 62(f)",
+      "heading": "Stay in Favor of a Judgment Debtor Under State Law",
+      "chunk": 14,
+      "text": "If a judgment is a lien on the judgment debtor's property under the law of the state where the court is located, the judgment debtor is entitled to the same stay of execution the state court would give."
+    },
+    {
+      "id": "frcp-64a",
+      "locator": "Rule 64(a)",
+      "heading": "Seizing a Person or Property",
+      "chunk": 14,
+      "text": "At the commencement of and throughout an action, every remedy is available that, under the law of the state where the court is located, provides for seizing a person or property to secure satisfaction of the potential judgment. But a federal statute governs to the extent it applies."
+    },
+    {
+      "id": "frcp-69a",
+      "locator": "Rule 69(a)(1)",
+      "heading": "Execution",
+      "chunk": 14,
+      "text": "A money judgment is enforced by a writ of execution, unless the court directs otherwise. The procedure on execution, and in proceedings supplementary to and in aid of judgment or execution, must accord with the procedure of the state where the court is located, but a federal statute governs to the extent it applies."
+    }
+  ]
+}

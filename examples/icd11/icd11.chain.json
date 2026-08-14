@@ -1,0 +1,107 @@
+{
+  "$schema": "../../spec/schema/chain.schema.json",
+  "chain_id": "icd11",
+  "system": {
+    "label": "ICD-11",
+    "corpus": "not included; see NOTES.md",
+    "version": "2022 release onward",
+    "declared_kind": "classification",
+    "jurisdiction": "World Health Organization member states adopting the classification",
+    "license": "ICD-11 is copyright WHO. No ICD-11 text is reproduced in this repository. Only structural facts about the classification's architecture, with locators, are recorded here.",
+    "notes": "Cell 2 of the registered design (paper §10.1 Table 11). The act-thin, repair-external case. The paper's prior report of an empty Stratum D here is WITHDRAWN (§11.5): an empty D is what one observes if the gating rule holds and equally what one observes if the tooling for that stratum does not exist. This cell must be re-run with a working D detector before its emptiness counts for anything."
+  },
+  "assigned_by": "hand assignment with evidence locators",
+  "committed_before_detection": true,
+  "links": {
+    "authority": {
+      "status": "internal",
+      "filler": "World Health Organization",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "ICD-11 Reference Guide, part 1 (purpose and governance)",
+          "note": "WHO fixes the classification and the coding rules; the authority to do so is exercised within the instrument."
+        }
+      ],
+      "specification": "internal"
+    },
+    "criteria": {
+      "status": "external",
+      "filler": "category definitions, inclusion and exclusion terms, coding rules",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "ICD-11 content model (definition, inclusions, exclusions per entity)",
+          "note": "The criteria layer is the thickest part of the instrument."
+        },
+        {
+          "locator": "Chapter 26 dual-coding requirement",
+          "note": "A code from this chapter must always be accompanied by a category from Chapters 01-25. A mandated architecture, stated by WHO in its own coding rules."
+        }
+      ],
+      "note": "Specified in full but not carried out under WHO's authority, so the PERFORMANCE status the gating rule consumes is external while the SPECIFICATION status is internal. Recording only the latter would report Stratum D as firing at this locus, which is the reading the gating rule exists to rule out: a manual that writes criteria for someone else to apply has not thereby performed the link. Every member but one of the classificatory typology (paper §7.3 Table 8) sits at or adjacent to this locus, which the gating rule explains: criteria are the only link a classification specifies in full.",
+      "specification": "internal"
+    },
+    "assessor": {
+      "status": "external",
+      "filler": "the clinician",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "ICD-11 Reference Guide, coding practice",
+          "note": "The classification presupposes a clinician applying it but neither licenses nor governs that clinician. Licensure lies with national and professional bodies outside WHO."
+        }
+      ],
+      "specification": "external"
+    },
+    "facts": {
+      "status": "external",
+      "filler": "presentation in a clinical encounter",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "n/a",
+          "note": "The classification is applied to facts it does not itself establish or regulate."
+        }
+      ],
+      "specification": "external"
+    },
+    "act": {
+      "status": "external",
+      "filler": "diagnosis",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "n/a",
+          "note": "A manual does not diagnose. The act happens in a clinical encounter the manual does not govern, though its criteria are written to be applied there. This is the residual pathway by which the middle value of the gating rule can fire: the artifact may specify a capacity whose exercise the surrounding institution cannot deliver."
+        }
+      ],
+      "specification": "external"
+    },
+    "effects": {
+      "status": "external",
+      "filler": "treatment, coverage, forensic standing, disability determination",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "n/a",
+          "note": "Effects are conferred by payers, courts, and agencies, not by the classification. Reimbursability of Chapter 26 codes in adopting jurisdictions is decided outside WHO."
+        }
+      ],
+      "specification": "external"
+    },
+    "remedy": {
+      "status": "external",
+      "filler": "revision of the classification",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "WHO-FIC update and revision process",
+          "note": "Revision happens TO the manual rather than within it. There is no pathway by which a particular conferral is revisited; there is a pathway by which the criteria are changed. Those are different links, and conflating them is the commonest error in assigning this chain."
+        }
+      ],
+      "specification": "external"
+    }
+  },
+  "provenance": "Assigned by inspection of WHO's published architecture and coding rules. No ICD-11 text reproduced."
+}

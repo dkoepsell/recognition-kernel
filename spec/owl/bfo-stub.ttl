@@ -1,0 +1,35 @@
+@prefix rk:   <https://sool.davidkoepsell.com/ontology/rk#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+
+
+<https://sool.davidkoepsell.com/ontology/rk/bfo-stub> a owl:Ontology ;
+    rdfs:label "BFO stub"@en ;
+    rdfs:comment """Bare declarations of the external terms the module references, for
+reasoning in environments where the real imports cannot be resolved.
+
+This file asserts no BFO axiom. It exists so the module's own axioms stay
+checkable, and it is NOT a pass on conformance: an undeclared obo:BFO_0000050
+is not an error in OWL, so every restriction built on it would go inert and a
+run could report consistent for entirely the wrong reason. Any validation
+report produced against this file must say so. Use tools/check_bfo.py to check
+the alignment itself."""@en .
+
+obo:BFO_0000050 a owl:ObjectProperty ; rdfs:label "part of"@en .
+obo:BFO_0000051 a owl:ObjectProperty ; rdfs:label "has part"@en .
+obo:BFO_0000015 a owl:Class ; rdfs:label "process"@en .
+obo:BFO_0000023 a owl:Class ; rdfs:label "role"@en .
+obo:BFO_0000017 a owl:Class ; rdfs:label "realizable entity"@en .
+obo:BFO_0000003 a owl:Class ; rdfs:label "occurrent"@en .
+obo:BFO_0000004 a owl:Class ; rdfs:label "independent continuant"@en .
+obo:IAO_0000030 a owl:Class ; rdfs:label "information content entity"@en .
+obo:IAO_0000033 a owl:Class ; rdfs:label "directive information entity"@en .
+obo:IAO_0000115 a owl:AnnotationProperty ; rdfs:label "definition"@en .
+obo:IAO_0000119 a owl:AnnotationProperty ; rdfs:label "definition source"@en .
+obo:IAO_0000136 a owl:ObjectProperty ; rdfs:label "is about"@en .
+obo:RO_0000052 a owl:ObjectProperty ; rdfs:label "characteristic of"@en .

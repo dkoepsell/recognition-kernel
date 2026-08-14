@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recognition-kernel"
+version = "0.2.0"
+description = "The contradiction kernel: a formal specification, a chain extractor, and a domain typology generator for recognition-constituted systems."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "David R. Koepsell", email = "drkoepsell@tamu.edu" }]
+keywords = ["applied ontology", "social ontology", "BFO", "normative systems", "ontology evaluation"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# The core has no dependencies by design: the kernel, the gating rule and the
+# typology generator run on the standard library alone.
+validate = ["jsonschema>=4", "rdflib>=7"]
+reason   = ["owlready2>=0.4"]          # HermiT; requires a JRE
+nlp      = ["spacy>=3.7"]              # optional, improves bearer identification
+dev      = ["pytest>=8", "jsonschema>=4", "rdflib>=7", "owlready2>=0.4"]
+
+[project.scripts]
+rkernel = "rkernel.cli:main"
+
+[project.urls]
+Homepage = "https://sool.davidkoepsell.com"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+rkernel = ["data/*.json", "web/static/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

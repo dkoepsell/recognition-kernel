@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recognition Kernel</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --panel: #ffffff;
+    --ink: #1b1a18;
+    --muted: #6b6862;
+    --line: #e2ded7;
+    --accent: #7a3e2f;
+    --fires: #b3472e;
+    --rare: #c9973f;
+    --cannot: #4a6b8a;
+    --na: #d8d4cd;
+    --ok: #3f7a52;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161513; --panel: #1f1e1b; --ink: #ece8e1; --muted: #9a958c;
+      --line: #333029; --accent: #d99a83; --na: #3a3630; --ok: #7fb894;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    border-bottom: 1px solid var(--line); padding: 12px 22px 0;
+    background: var(--panel);
+  }
+  .brand { display: flex; align-items: baseline; gap: 13px; flex-wrap: wrap; margin-bottom: 10px; }
+  h1 { font-size: 17px; margin: 0; font-weight: 620; letter-spacing: -0.01em; }
+  .ver { font: 12px var(--mono); color: var(--muted); }
+  nav { display: flex; gap: 2px; }
+  nav button {
+    background: transparent; border: none; border-bottom: 2px solid transparent;
+    color: var(--muted); font: inherit; font-size: 14px; padding: 8px 14px;
+    cursor: pointer; border-radius: 0;
+  }
+  nav button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+  main { padding: 22px; max-width: 1180px; margin: 0 auto; }
+  .layout { display: grid; grid-template-columns: 320px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; padding: 16px; margin-bottom: 18px;
+  }
+  h2 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--muted); margin: 0 0 11px; font-weight: 660;
+  }
+  select, textarea, button, input {
+    font-family: inherit; font-size: 14px; width: 100%;
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+    background: var(--bg); color: var(--ink);
+  }
+  textarea { font: 12px/1.5 var(--mono); min-height: 140px; resize: vertical; }
+  button {
+    background: var(--accent); color: #fff; border-color: transparent;
+    font-weight: 600; cursor: pointer; margin-top: 9px;
+  }
+  button:hover:not(:disabled) { filter: brightness(1.08); }
+  button:disabled { opacity: .55; cursor: default; }
+  button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  label.fld { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 3px; }
+
+  .kindbar { display: flex; gap: 26px; flex-wrap: wrap; align-items: baseline; }
+  .kindbar .big { font-size: 21px; font-weight: 660; letter-spacing: -0.02em; }
+  .mismatch {
+    background: color-mix(in srgb, var(--fires) 14%, transparent);
+    border-left: 3px solid var(--fires); padding: 9px 12px;
+    border-radius: 0 5px 5px 0; margin-top: 12px; font-size: 13px;
+  }
+  dl.counts {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+    gap: 12px; margin: 0;
+  }
+  dl.counts dt { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  dl.counts dd { margin: 2px 0 0; font-size: 19px; font-weight: 620; font-family: var(--mono); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 640; }
+  .scroll { overflow-x: auto; }
+  code, .mono { font-family: var(--mono); font-size: 12px; }
+
+  .cell { text-align: center; font: 11px var(--mono); border-radius: 3px; padding: 5px 3px; color: #fff; }
+  .f-fires { background: var(--fires); }
+  .f-rare { background: var(--rare); }
+  .f-cannot_fire { background: var(--cannot); }
+  /* no_locus is hollow on purpose: the coordinate exists, this system has
+     nothing at it. not_applicable is filled flat: there is no coordinate. */
+  .f-no_locus {
+    background: transparent; color: var(--muted);
+    border: 1px dashed var(--muted); padding: 4px 2px;
+  }
+  .f-not_applicable { background: var(--na); color: var(--muted); }
+  td.diff { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 3px; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; margin-top: 11px; color: var(--muted); }
+  .legend span::before {
+    content: ""; display: inline-block; width: 10px; height: 10px;
+    border-radius: 2px; margin-right: 5px; vertical-align: middle;
+  }
+  .lg-fires::before { background: var(--fires); }
+  .lg-rare::before { background: var(--rare); }
+  .lg-cannot::before { background: var(--cannot); }
+  .lg-nolocus::before { background: transparent; border: 1px dashed var(--muted); }
+  .lg-na::before { background: var(--na); }
+  .lg-diff::before { background: transparent; outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  .err {
+    background: color-mix(in srgb, var(--fires) 12%, transparent);
+    border: 1px solid var(--fires); color: var(--fires);
+    padding: 11px 13px; border-radius: 6px; font-size: 13px; margin-bottom: 16px;
+  }
+  .empty { color: var(--muted); font-size: 13px; font-style: italic; }
+  .tag {
+    display: inline-block; font: 11px var(--mono); padding: 1px 6px;
+    border: 1px solid var(--line); border-radius: 10px; color: var(--muted);
+  }
+  .tag.good { color: var(--ok); border-color: var(--ok); }
+  .tag.bad { color: var(--fires); border-color: var(--fires); }
+  .yes { color: var(--fires); font-weight: 640; }
+  .pick { display: block; font-size: 13px; padding: 4px 0; }
+  .pick input { width: auto; margin-right: 7px; }
+  .linkrow {
+    display: grid; grid-template-columns: 92px 1fr 1fr; gap: 8px;
+    align-items: center; margin-bottom: 7px;
+  }
+  .linkrow > label { font-size: 12px; font-family: var(--mono); color: var(--muted); }
+  .linkrow select, .linkrow input { padding: 6px 8px; font-size: 13px; margin: 0; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Guide */
+  .prose { max-width: 760px; }
+  .prose p, .prose ul { font-size: 14px; }
+  .prose ul { padding-left: 20px; }
+  .prose li { margin-bottom: 7px; }
+  .prose h3 { font-size: 15px; margin: 16px 0 4px; }
+  .prose .cta { margin-top: 14px; }
+  button.inline {
+    width: auto; display: inline; background: transparent; color: var(--accent);
+    border: none; padding: 0; margin: 0; font-weight: 600; text-decoration: underline;
+    cursor: pointer; font-size: inherit;
+  }
+  .locusdef { border-left: 2px solid var(--line); padding: 2px 0 2px 12px; margin-bottom: 11px; }
+  .locusdef b { font-family: var(--mono); font-size: 13px; }
+  .locusdef span { color: var(--muted); font-size: 13px; }
+
+  /* Builder modes + wizard */
+  .modes { display: flex; gap: 6px; margin-bottom: 14px; }
+  .modes button { margin: 0; }
+  .modes button[aria-selected="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  .wizhead { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
+  .bar { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent); transition: width .18s; }
+  #wizTitle { font-size: 16px; margin: 0 0 5px; font-weight: 620; }
+  .wiznav { display: flex; gap: 8px; margin-top: 14px; }
+  .wiznav button { margin: 0; }
+  .choice {
+    display: block; border: 1px solid var(--line); border-radius: 7px;
+    padding: 10px 12px; margin-bottom: 8px; cursor: pointer; font-size: 14px;
+  }
+  .choice:hover { border-color: var(--accent); }
+  .choice[data-sel="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  .choice b { display: block; font-family: var(--mono); font-size: 13px; }
+  .choice span { color: var(--muted); font-size: 12.5px; }
+
+  /* Full-field link editor */
+  details.link { border: 1px solid var(--line); border-radius: 7px; margin-bottom: 8px; }
+  details.link > summary {
+    padding: 8px 11px; cursor: pointer; display: flex; gap: 9px;
+    align-items: center; font-size: 13px; list-style: none;
+  }
+  details.link > summary::-webkit-details-marker { display: none; }
+  details.link > summary::before { content: "▸"; color: var(--muted); font-size: 11px; }
+  details.link[open] > summary::before { content: "▾"; }
+  details.link > summary b { font-family: var(--mono); flex: 1; }
+  details.link > summary select { width: auto; padding: 4px 7px; font-size: 12px; margin: 0; }
+  .linkbody { padding: 4px 11px 12px; border-top: 1px solid var(--line); }
+  .linkbody input, .linkbody select, .linkbody textarea { margin-bottom: 2px; }
+  .evrow { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; margin-bottom: 6px; }
+  .evrow input { padding: 6px 8px; font-size: 12.5px; }
+  .evrow button { width: auto; margin: 0; padding: 4px 10px; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Recognition Kernel</h1>
+    <span class="ver" id="kver"></span>
+  </div>
+  <nav>
+    <button data-view="guide" aria-selected="true">Start here</button>
+    <button data-view="analyze" aria-selected="false">Analyze</button>
+    <button data-view="compare" aria-selected="false">Compare</button>
+    <button data-view="build" aria-selected="false">Builder</button>
+  </nav>
+</header>
+
+<main>
+  <div id="error" style="display:none" class="err"></div>
+
+  <!-- GUIDE -->
+  <section id="view-guide">
+    <div class="prose">
+      <div class="panel">
+        <h2>What this tool does</h2>
+        <p>You describe a system — a body of rules, an ontology, a certification
+          scheme — as a <strong>chain</strong> of seven links. The kernel then tells you
+          which failure modes that system can have, and where.</p>
+        <p>Nothing here is observed or measured. Every answer is
+          <em>derived</em> from how you describe the seven links. If you change one
+          answer, the predictions change with it. That is the whole idea: the
+          structure of a system determines the failures available to it.</p>
+        <p class="cta">New here? <button class="inline" data-goto="build">Open the Builder wizard</button>
+          and answer seven plain questions. You will have a result in about a minute.</p>
+      </div>
+
+      <div class="panel">
+        <h2>The seven links</h2>
+        <p>A <strong>recognition act</strong> is any moment where a rule is applied to a
+          case and a status is conferred: a judge ruling, an inspector certifying,
+          a coder assigning a diagnosis. The seven links are the parts such an act needs.</p>
+        <div id="guideLoci"></div>
+      </div>
+
+      <div class="panel">
+        <h2>The only question you answer per link</h2>
+        <p>For each link you pick one of three answers. This is the single most
+          important thing to get right, so take it slowly.</p>
+        <table>
+          <thead><tr><th>Answer</th><th>Means</th><th>Ask yourself</th></tr></thead>
+          <tbody>
+            <tr><td><code>internal</code></td>
+              <td>The system spells this out, and it happens under the system's own authority.</td>
+              <td>"Does the document itself define this, and control it?"</td></tr>
+            <tr><td><code>external</code></td>
+              <td>It happens, but the system neither specifies nor governs it.</td>
+              <td>"Does this happen somewhere else, outside this document's control?"</td></tr>
+            <tr><td><code>absent</code></td>
+              <td>There is no such link at all.</td>
+              <td>"Does this simply not exist for this system?"</td></tr>
+          </tbody>
+        </table>
+        <p class="hint">A gene ontology has no judge and no appeal, so its
+          <code>assessor</code> and <code>remedy</code> are <code>absent</code>. A certification
+          scheme usually has an appeals process it does not itself run, which
+          makes <code>remedy</code> <code>external</code>. Court rules run their own appeals,
+          which makes <code>remedy</code> <code>internal</code>.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Reading the result grid</h2>
+        <p>The result is a grid: four <strong>strata</strong> (A–D, kinds of failure) down the
+          side, eight <strong>loci</strong> (the seven links plus the artifact body) across.
+          Each cell says whether that kind of failure can occur at that place.</p>
+        ${""}
+        <div id="guideLegend"></div>
+        <p><strong>The two "nothing here" marks are not the same, and the difference
+          matters.</strong></p>
+        <ul>
+          <li><code>·</code> <strong>not a well-formed crossing</strong> — this coordinate does not
+            exist for <em>any</em> system. Stratum D at the artifact body is always
+            <code>·</code>, because a recognition failure cannot live in a document that
+            confers no status. This is a fact about the kernel.</li>
+          <li><code>∅</code> <strong>no such link in this system</strong> — the coordinate exists and
+            the failure could sit there, but <em>this</em> system has no such link. This is
+            a fact about your system, not about the kernel.</li>
+        </ul>
+        <p>Concretely: a gene ontology shows <code>∅</code> for inconsistency at
+          <code>authority</code>. That does <em>not</em> mean the ontology cannot be
+          inconsistent. It means it has no authority link for the inconsistency to
+          sit at — so the failure <strong>relocates to the artifact body</strong>, where the
+          same row reads <code>✓</code>. Read the whole row, never a single cell.</p>
+      </div>
+
+      <div class="panel">
+        <h2>The four strata</h2>
+        <div id="guideStrata"></div>
+        <p class="hint">Stratum D is <em>gated</em>: its failures need a real recognition
+          act to occur. That is why a system with no act shows <code>✗ cannot fire</code>
+          across D — the failure is barred, not merely relocated. A, B and C are
+          ungated and always have the artifact body to fall back on.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Declared vs computed kind</h2>
+        <p>You may declare what you think your system is. The kernel works out
+          the kind independently, from the links alone, and reports both. When
+          they disagree you get a <strong>kind mismatch</strong> banner. That disagreement is
+          a finding, not an error to be corrected — it usually means the system
+          does less than it claims.</p>
+      </div>
+
+      <div class="panel">
+        <h2>The three tabs</h2>
+        <table>
+          <thead><tr><th>Tab</th><th>Use it to</th></tr></thead>
+          <tbody>
+            <tr><td><button class="inline" data-goto="build">Builder</button></td>
+              <td>Describe a system and get its typology. Start with the wizard.</td></tr>
+            <tr><td><button class="inline" data-goto="analyze">Analyze</button></td>
+              <td>Run a chain file you already have, or one the wizard produced.</td></tr>
+            <tr><td><button class="inline" data-goto="compare">Compare</button></td>
+              <td>Put systems side by side. Differing cells are outlined.</td></tr>
+          </tbody>
+        </table>
+        <p class="hint">One caution the tool repeats in its own output: a cell that
+          says <code>fires</code> asserts that a failure <em>can</em> occur, never that it
+          <em>has</em>. These are predictions about structure, not measurements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYZE -->
+  <section id="view-analyze" hidden>
+    <div class="layout">
+      <div>
+        <div class="panel">
+          <h2>Chain</h2>
+          <select id="examples"><option value="">Loading…</option></select>
+          <button id="run">Generate typology</button>
+          <p class="hint">Or paste a chain document below.</p>
+          <textarea id="paste" placeholder='{"chain_id": "…", "system": {…}, "links": {…}}' spellcheck="false"></textarea>
+          <button id="runPaste" class="secondary">Generate from pasted JSON</button>
+        </div>
+        <div class="panel">
+          <h2>Reference grid</h2>
+          <p class="hint" style="margin-top:0">The kernel's own well-formedness grid, independent of any chain.</p>
+          <button id="showGrid" class="secondary" style="margin-top:4px">Show reference grid</button>
+        </div>
+      </div>
+      <div id="out"></div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section id="view-compare" hidden>
+    <div class="layout">
+      <div class="panel">
+        <h2>Select two or more chains</h2>
+        <div id="cmpPicks"></div>
+        <button id="runCompare">Compare</button>
+        <p class="hint">Cells that differ across the selected systems are outlined.</p>
+      </div>
+      <div id="cmpOut"></div>
+    </div>
+  </section>
+
+  <!-- BUILDER -->
+  <section id="view-build" hidden>
+    <div class="layout">
+      <div class="panel">
+        <div class="modes">
+          <button id="modeWizard" class="secondary" aria-selected="true">Wizard</button>
+          <button id="modeForm" class="secondary" aria-selected="false">All fields</button>
+        </div>
+
+        <!-- WIZARD -->
+        <div id="wizard">
+          <div class="wizhead">
+            <span class="tag" id="wizStep">Step 1</span>
+            <div class="bar"><i id="wizBar"></i></div>
+          </div>
+          <h3 id="wizTitle"></h3>
+          <p id="wizBody" class="hint"></p>
+          <div id="wizControls"></div>
+          <div class="wiznav">
+            <button id="wizBack" class="secondary">Back</button>
+            <button id="wizNext">Next</button>
+          </div>
+        </div>
+
+        <!-- FULL FORM -->
+        <div id="fullform" hidden>
+          <div class="row2">
+            <div><label class="fld" for="bId">Chain id</label>
+              <input id="bId" value="draft" spellcheck="false"></div>
+            <div><label class="fld" for="bKind">Declared kind</label>
+              <select id="bKind"></select></div>
+          </div>
+          <label class="fld" for="bLabel">System label</label>
+          <input id="bLabel" value="Untitled system">
+          <div class="row2">
+            <div><label class="fld" for="bCorpus">Corpus</label>
+              <input id="bCorpus" placeholder="optional"></div>
+            <div><label class="fld" for="bJuris">Jurisdiction</label>
+              <input id="bJuris" placeholder="optional"></div>
+          </div>
+          <label class="fld" for="bNotes">Notes</label>
+          <input id="bNotes" placeholder="optional">
+
+          <h2 style="margin-top:18px">Links — all fields</h2>
+          <p class="hint" style="margin-top:0">Expand a link to set evidence,
+            confidence, note, and specification.</p>
+          <div id="bLinks"></div>
+
+          <label class="pick" style="margin-top:12px">
+            <input type="checkbox" id="bLive" checked> Regenerate on every change
+          </label>
+          <button id="bRun">Generate typology</button>
+        </div>
+
+        <button id="bDownload" class="secondary">Download chain JSON</button>
+        <button id="bToAnalyze" class="secondary">Open in Analyze</button>
+      </div>
+      <div id="bOut"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+"use strict";
+
+const $ = (id) => document.getElementById(id);
+const errBox = $("error");
+let KERNEL = null;
+let SCHEMA = null;
+let EXAMPLES = [];
+let LAST_BUILD = null;
+
+const esc = (v) =>
+  String(v ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const titleize = (s) => String(s ?? "").replace(/_/g, " ");
+
+// Mirrors GLYPH in rkernel/render.py so the CLI and the UI read alike.
+// Note no_locus and not_applicable both start with "n", so a first-initial
+// label would collapse the very distinction these glyphs exist to keep.
+const GLYPH = {
+  fires: "✓",
+  rare: "○",
+  cannot_fire: "✗",
+  no_locus: "∅",
+  not_applicable: "·",
+};
+
+const FIRING_HELP = {
+  fires: "The failure can occur at this coordinate.",
+  rare: "The failure can occur, but only rarely.",
+  cannot_fire: "The link exists here, and this failure is barred at it.",
+  no_locus: "This crossing is well-formed, but this system has no link at this locus. "
+    + "For strata A, B and C the failure relocates to the artifact body.",
+  not_applicable: "Not a well-formed crossing: this coordinate does not exist in any system.",
+};
+
+const glyph = (v) => GLYPH[v] ?? "?";
+
+const FIRING_LEGEND = `<div class="legend">
+  <span class="lg-fires">✓ fires</span>
+  <span class="lg-rare">○ rare</span>
+  <span class="lg-cannot">✗ cannot fire</span>
+  <span class="lg-nolocus">∅ no such link in this system</span>
+  <span class="lg-na">· not a well-formed crossing</span>
+</div>`;
+
+function showError(msg) { errBox.textContent = msg; errBox.style.display = "block"; }
+function clearError() { errBox.style.display = "none"; }
+
+async function api(path, body) {
+  const res = await fetch(path, body
+    ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }
+    : undefined);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `request failed (${res.status})`);
+  return data;
+}
+
+async function withBusy(btn, fn) {
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = "Working…"; clearError();
+  try { await fn(); }
+  catch (e) { showError(e.message); }
+  finally { btn.disabled = false; btn.textContent = label; }
+}
+
+// -- views ------------------------------------------------------------
+
+const VIEWS = ["guide", "analyze", "compare", "build"];
+
+function setView(name) {
+  for (const b of document.querySelectorAll("nav button"))
+    b.setAttribute("aria-selected", String(b.dataset.view === name));
+  for (const v of VIEWS) $(`view-${v}`).hidden = v !== name;
+  clearError();
+  window.scrollTo(0, 0);
+}
+for (const b of document.querySelectorAll("nav button"))
+  b.addEventListener("click", () => setView(b.dataset.view));
+// "Open the Builder" style links inside the guide.
+document.addEventListener("click", (e) => {
+  const go = e.target.closest("[data-goto]");
+  if (go) setView(go.dataset.goto);
+});
+
+// -- boot -------------------------------------------------------------
+
+async function boot() {
+  try {
+    [KERNEL, SCHEMA] = await Promise.all([api("/api/kernel"), api("/api/schema")]);
+    $("kver").textContent = `kernel ${KERNEL.kernel_version}`;
+
+    EXAMPLES = await api("/api/examples");
+    const sel = $("examples");
+    sel.innerHTML = EXAMPLES.length
+      ? EXAMPLES.map((e) => `<option value="${esc(e.path)}">${esc(e.label)}</option>`).join("")
+      : `<option value="">no examples found</option>`;
+    $("run").disabled = !EXAMPLES.length;
+
+    $("cmpPicks").innerHTML = EXAMPLES.length
+      ? EXAMPLES.map((e) => `<label class="pick">
+          <input type="checkbox" value="${esc(e.path)}" checked> ${esc(e.label)}
+          <span class="tag">${esc(e.chain_id)}</span></label>`).join("")
+      : `<p class="empty">No example chains found.</p>`;
+    $("runCompare").disabled = EXAMPLES.length < 2;
+
+    for (const name of SCHEMA?.chain_links || []) linkOf(name);
+    fillGuide();
+    buildForm();
+    renderWizard();
+  } catch (e) {
+    showError(e.message);
+  }
+}
+
+// -- analyze ----------------------------------------------------------
+
+$("run").addEventListener("click", () => withBusy($("run"), async () => {
+  const path = $("examples").value;
+  if (path) $("out").innerHTML = renderTypology(await api("/api/typology", { example: path }));
+}));
+
+$("runPaste").addEventListener("click", () => {
+  const text = $("paste").value.trim();
+  if (!text) return showError("Paste a chain document first.");
+  let chain;
+  try { chain = JSON.parse(text); }
+  catch (e) { return showError(`Invalid JSON: ${e.message}`); }
+  withBusy($("runPaste"), async () => {
+    $("out").innerHTML = renderTypology(await api("/api/typology", { chain }));
+  });
+});
+
+$("showGrid").addEventListener("click", () => withBusy($("showGrid"), async () => {
+  const grid = await api("/api/grid");
+  $("out").innerHTML = `<div class="panel"><h2>Reference grid</h2>${jsonTable(grid)}</div>`;
+}));
+
+// -- compare ----------------------------------------------------------
+
+$("runCompare").addEventListener("click", () => withBusy($("runCompare"), async () => {
+  const picked = [...document.querySelectorAll("#cmpPicks input:checked")].map((i) => i.value);
+  if (picked.length < 2) throw new Error("Select at least two chains to compare.");
+  const result = await api("/api/compare", { chains: picked.map((p) => ({ example: p })) });
+  $("cmpOut").innerHTML = renderCompare(result);
+}));
+
+function renderCompare(result) {
+  const systems = result.systems || [];
+  if (systems.length < 2) return `<div class="panel"><p class="empty">Nothing to compare.</p></div>`;
+  const strata = KERNEL?.strata || [];
+  const loci = KERNEL?.loci || [];
+
+  const headRow = systems.map((s) =>
+    `<th>${esc(s.label || s.chain_id)}</th>`).join("");
+
+  // Summary block: kind, thickness, and the headline counts.
+  const metaRows = [
+    ["Computed kind", (s) => s.computed_kind],
+    ["Thickness", (s) => s.thickness],
+    ["Fires", (s) => s.fires],
+    ["Rare", (s) => s.rare],
+    ["Cannot fire", (s) => s.cannot_fire],
+    ["Well-formed", (s) => s.well_formed],
+  ].map(([name, get]) => {
+    const vals = systems.map(get);
+    const differs = new Set(vals.map(String)).size > 1;
+    return `<tr><th>${esc(name)}</th>${vals
+      .map((v) => `<td${differs ? ' class="diff"' : ""}>${esc(titleize(v ?? "—"))}</td>`)
+      .join("")}</tr>`;
+  }).join("");
+
+  // Stratum summary profile.
+  const profRows = strata.map((s) => {
+    const vals = systems.map((sys) => sys.profile?.[s.id]);
+    const differs = new Set(vals.map(String)).size > 1;
+    return `<tr><th>${esc(s.id)} <span style="font-weight:400;text-transform:none">${esc(s.label || "")}</span></th>${
+      vals.map((v) => `<td${differs ? ' class="diff"' : ""}>
+        <div class="cell f-${esc(v)}" title="${esc(FIRING_HELP[v] || "")}">${esc(glyph(v))} ${esc(titleize(v ?? "—"))}</div></td>`).join("")}</tr>`;
+  }).join("");
+
+  // Per-locus detail: this is where certification and classification separate.
+  const locusTables = strata.map((s) => {
+    const rows = loci.map((l) => {
+      const vals = systems.map((sys) => sys.profile_by_locus?.[s.id]?.[l.id]);
+      const differs = new Set(vals.map(String)).size > 1;
+      return `<tr><th title="${esc(l.label || "")}">${esc(l.id)}</th>${
+        vals.map((v) => `<td${differs ? ' class="diff"' : ""}>
+          <div class="cell f-${esc(v)}" title="${esc(FIRING_HELP[v] || "")}">${esc(glyph(v))} ${esc(titleize(v ?? "—"))}</div></td>`).join("")}</tr>`;
+    }).join("");
+    return `<h2 style="margin-top:18px">Stratum ${esc(s.id)} by locus</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>Locus</th>${headRow}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  }).join("");
+
+  return `<div class="panel">
+      <h2>Systems (${systems.length})</h2>
+      <div class="scroll"><table>
+        <thead><tr><th></th>${headRow}</tr></thead><tbody>${metaRows}</tbody></table></div>
+    </div>
+    <div class="panel">
+      <h2>Profile summary by stratum</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>Stratum</th>${headRow}</tr></thead><tbody>${profRows}</tbody></table></div>
+      ${FIRING_LEGEND}
+      <div class="legend"><span class="lg-diff">outlined = differs across the selected systems</span></div>
+      <p class="hint">Two systems can share a summary and still differ at a locus —
+        that difference is what separates a classification from a certification scheme.</p>
+    </div>
+    <div class="panel">${locusTables}</div>`;
+}
+
+// -- builder ----------------------------------------------------------
+
+// STATE is the single source of truth for both the wizard and the full form,
+// so switching modes never loses what you already answered.
+const STATE = {
+  chain_id: "draft",
+  label: "Untitled system",
+  declared_kind: "",
+  corpus: "", jurisdiction: "", notes: "",
+  links: {},   // name -> {status, filler, evidence[], confidence, note, specification}
+};
+
+const STATUS_HELP = {
+  internal: "The system spells this out, and it happens under the system's own authority.",
+  external: "It happens, but the system neither specifies nor governs it.",
+  absent: "There is no such link at all.",
+};
+
+function linkOf(name) {
+  if (!STATE.links[name]) STATE.links[name] = { status: "internal", evidence: [] };
+  if (!STATE.links[name].evidence) STATE.links[name].evidence = [];
+  return STATE.links[name];
+}
+
+function collectSpec() {
+  const links = {};
+  for (const name of SCHEMA?.chain_links || []) {
+    const l = linkOf(name);
+    const out = { status: l.status };
+    for (const f of ["filler", "confidence", "note", "specification"])
+      if (l[f]) out[f] = l[f];
+    const ev = (l.evidence || []).filter((e) => e && e.locator && e.locator.trim());
+    if (ev.length) out.evidence = ev.map((e) => {
+      const o = { locator: e.locator.trim() };
+      if (e.quote?.trim()) o.quote = e.quote.trim();
+      if (e.note?.trim()) o.note = e.note.trim();
+      return o;
+    });
+    links[name] = out;
+  }
+  const spec = { chain_id: STATE.chain_id || "draft", label: STATE.label || "Untitled system", links };
+  for (const f of ["declared_kind", "corpus", "jurisdiction", "notes"])
+    if (STATE[f]) spec[f] = STATE[f];
+  return spec;
+}
+
+// -- guide content (driven by the live kernel, never hardcoded) --------
+
+function fillGuide() {
+  $("guideLegend").innerHTML = FIRING_LEGEND;
+  $("guideLoci").innerHTML = (KERNEL?.loci || [])
+    .filter((l) => !l.pseudo_locus)
+    .map((l, i) => `<div class="locusdef"><b>${i + 1}. ${esc(l.id)}</b> — ${esc(l.label)}<br>
+      <span>${esc(l.definition || "")}</span></div>`).join("") +
+    (KERNEL?.loci || []).filter((l) => l.pseudo_locus).map((l) =>
+      `<div class="locusdef"><b>+ ${esc(l.id)}</b> — ${esc(l.label)}
+       <span class="tag">always present</span><br>
+       <span>${esc(l.definition || "")}</span></div>`).join("");
+
+  $("guideStrata").innerHTML = (KERNEL?.strata || []).map((s) =>
+    `<div class="locusdef"><b>${esc(s.id)}</b> — ${esc(s.label)}
+      ${s.gated ? '<span class="tag">gated</span>' : ""}<br>
+      <span>${esc(s.definition || "")}</span></div>`).join("");
+}
+
+// -- wizard -----------------------------------------------------------
+
+let wizAt = 0;
+
+function wizSteps() {
+  const links = SCHEMA?.chain_links || [];
+  const lociById = Object.fromEntries((KERNEL?.loci || []).map((l) => [l.id, l]));
+  return [
+    { kind: "intro" },
+    ...links.map((name) => ({ kind: "link", name, locus: lociById[name] })),
+    { kind: "review" },
+  ];
+}
+
+function renderWizard() {
+  const steps = wizSteps();
+  wizAt = Math.max(0, Math.min(wizAt, steps.length - 1));
+  const step = steps[wizAt];
+  $("wizStep").textContent = `Step ${wizAt + 1} of ${steps.length}`;
+  $("wizBar").style.width = `${((wizAt + 1) / steps.length) * 100}%`;
+  $("wizBack").disabled = wizAt === 0;
+  $("wizNext").textContent = wizAt === steps.length - 1 ? "Finish" : "Next";
+
+  if (step.kind === "intro") {
+    $("wizTitle").textContent = "What are you describing?";
+    $("wizBody").textContent =
+      "Give the system a name. You can declare what you think it is — the kernel "
+      + "will work out the kind independently and tell you if the two disagree.";
+    $("wizControls").innerHTML = `
+      <label class="fld" for="wLabel">Name of the system</label>
+      <input id="wLabel" value="${esc(STATE.label)}" placeholder="e.g. Gene Ontology">
+      <label class="fld" for="wId">Short id (used for the filename)</label>
+      <input id="wId" value="${esc(STATE.chain_id)}" spellcheck="false">
+      <label class="fld" for="wKind">What do you think it is? (optional)</label>
+      <select id="wKind">
+        <option value="">Not sure — let the kernel decide</option>
+        ${(SCHEMA?.system_kinds || []).map((k) =>
+          `<option value="${esc(k)}"${STATE.declared_kind === k ? " selected" : ""}>${esc(titleize(k))}</option>`).join("")}
+      </select>`;
+    $("wLabel").oninput = (e) => { STATE.label = e.target.value; };
+    $("wId").oninput = (e) => { STATE.chain_id = e.target.value; };
+    $("wKind").onchange = (e) => { STATE.declared_kind = e.target.value; };
+    return;
+  }
+
+  if (step.kind === "link") {
+    const l = linkOf(step.name);
+    $("wizTitle").textContent = `${step.locus?.label || step.name}`;
+    $("wizBody").innerHTML =
+      `<em>${esc(step.locus?.definition || "")}</em><br><br>
+       How does <code>${esc(step.name)}</code> work in this system?`;
+    $("wizControls").innerHTML =
+      (SCHEMA?.link_statuses || []).map((s) => `
+        <label class="choice" data-status="${esc(s)}" data-sel="${String(l.status === s)}">
+          <b>${esc(s)}</b><span>${esc(STATUS_HELP[s] || "")}</span></label>`).join("") +
+      `<label class="fld" for="wFiller">What occupies this link? (optional)</label>
+       <input id="wFiller" value="${esc(l.filler || "")}" placeholder="e.g. judge, official">`;
+    for (const c of $("wizControls").querySelectorAll(".choice")) {
+      c.onclick = () => {
+        l.status = c.dataset.status;
+        for (const o of $("wizControls").querySelectorAll(".choice"))
+          o.dataset.sel = String(o === c);
+      };
+    }
+    $("wFiller").oninput = (e) => { l.filler = e.target.value; };
+    return;
+  }
+
+  $("wizTitle").textContent = "Review";
+  $("wizBody").textContent =
+    "Here is what you described. Press Finish to generate the typology, or go "
+    + "Back to change an answer. Switch to All fields to add evidence and notes.";
+  $("wizControls").innerHTML = `<div class="scroll"><table>
+    <thead><tr><th>Link</th><th>Status</th><th>Filler</th></tr></thead>
+    <tbody>${(SCHEMA?.chain_links || []).map((n) => {
+      const l = linkOf(n);
+      return `<tr><td><code>${esc(n)}</code></td><td>${esc(l.status)}</td>
+        <td>${esc(l.filler || "—")}</td></tr>`;
+    }).join("")}</tbody></table></div>`;
+}
+
+$("wizBack").addEventListener("click", () => { wizAt--; renderWizard(); });
+$("wizNext").addEventListener("click", () => {
+  const steps = wizSteps();
+  if (wizAt >= steps.length - 1) { syncFormFromState(); runBuild(); return; }
+  wizAt++;
+  renderWizard();
+});
+
+// -- full form --------------------------------------------------------
+
+function buildForm() {
+  $("bKind").innerHTML = `<option value="">(none declared)</option>` +
+    (SCHEMA?.system_kinds || []).map((k) =>
+      `<option value="${esc(k)}">${esc(titleize(k))}</option>`).join("");
+
+  const statuses = SCHEMA?.link_statuses || [];
+  const confs = SCHEMA?.confidences || [];
+  const lociById = Object.fromEntries((KERNEL?.loci || []).map((l) => [l.id, l]));
+
+  $("bLinks").innerHTML = (SCHEMA?.chain_links || []).map((name) => {
+    const l = linkOf(name);
+    const opts = (sel) => statuses.map((s) =>
+      `<option value="${esc(s)}"${sel === s ? " selected" : ""}>${esc(s)}</option>`).join("");
+    return `<details class="link">
+      <summary><b>${esc(name)}</b>
+        <select data-link="${esc(name)}" onclick="event.preventDefault()">${opts(l.status)}</select>
+      </summary>
+      <div class="linkbody">
+        <p class="hint" style="margin-top:6px">${esc(lociById[name]?.definition || "")}</p>
+        <label class="fld">Filler — what occupies this link</label>
+        <input data-f="filler" data-link="${esc(name)}" value="${esc(l.filler || "")}" placeholder="e.g. judge, official">
+        <div class="row2">
+          <div><label class="fld">Confidence</label>
+            <select data-f="confidence" data-link="${esc(name)}">
+              <option value="">(unset)</option>
+              ${confs.map((c) => `<option value="${esc(c)}"${l.confidence === c ? " selected" : ""}>${esc(c)}</option>`).join("")}
+            </select></div>
+          <div><label class="fld">Specification
+              <span title="Whether the system SPECIFIES this link, as distinct from whether it performs it. Only status feeds the gating rule.">ⓘ</span></label>
+            <select data-f="specification" data-link="${esc(name)}">
+              <option value="">(unset)</option>
+              ${statuses.map((s) => `<option value="${esc(s)}"${l.specification === s ? " selected" : ""}>${esc(s)}</option>`).join("")}
+            </select></div>
+        </div>
+        <label class="fld">Note</label>
+        <input data-f="note" data-link="${esc(name)}" value="${esc(l.note || "")}">
+        <label class="fld">Evidence — locators supporting this assignment</label>
+        <div data-ev="${esc(name)}"></div>
+        <button class="secondary" data-addev="${esc(name)}" style="width:auto;padding:5px 11px;font-size:12px">Add evidence</button>
+      </div></details>`;
+  }).join("");
+
+  for (const name of SCHEMA?.chain_links || []) renderEvidence(name);
+  wireForm();
+  syncFormFromState();
+}
+
+function renderEvidence(name) {
+  const host = $("bLinks").querySelector(`[data-ev="${name}"]`);
+  if (!host) return;
+  const l = linkOf(name);
+  host.innerHTML = l.evidence.map((e, i) => `
+    <div class="evrow">
+      <input placeholder="locator (required)" value="${esc(e.locator || "")}" data-ev-f="locator" data-ev-i="${i}" data-link="${esc(name)}">
+      <input placeholder="quote (optional)" value="${esc(e.quote || "")}" data-ev-f="quote" data-ev-i="${i}" data-link="${esc(name)}">
+      <button class="secondary" data-delev="${esc(name)}" data-ev-i="${i}">✕</button>
+    </div>`).join("") || `<p class="hint" style="margin:0 0 6px">None yet.</p>`;
+
+  for (const inp of host.querySelectorAll("input")) {
+    inp.oninput = () => {
+      linkOf(name).evidence[+inp.dataset.evI][inp.dataset.evF] = inp.value;
+      if ($("bLive").checked) runBuild();
+    };
+  }
+  for (const del of host.querySelectorAll("[data-delev]")) {
+    del.onclick = () => {
+      linkOf(name).evidence.splice(+del.dataset.evI, 1);
+      renderEvidence(name);
+      if ($("bLive").checked) runBuild();
+    };
+  }
+}
+
+function wireForm() {
+  const touch = () => { if ($("bLive").checked) runBuild(); };
+
+  for (const sel of $("bLinks").querySelectorAll("select[data-link][data-f]")) {
+    sel.onchange = () => { linkOf(sel.dataset.link)[sel.dataset.f] = sel.value; touch(); };
+  }
+  for (const sel of $("bLinks").querySelectorAll("summary select[data-link]")) {
+    sel.onchange = () => { linkOf(sel.dataset.link).status = sel.value; touch(); };
+  }
+  for (const inp of $("bLinks").querySelectorAll("input[data-link][data-f]")) {
+    inp.oninput = () => { linkOf(inp.dataset.link)[inp.dataset.f] = inp.value; touch(); };
+  }
+  for (const add of $("bLinks").querySelectorAll("[data-addev]")) {
+    add.onclick = () => {
+      linkOf(add.dataset.addev).evidence.push({ locator: "" });
+      renderEvidence(add.dataset.addev);
+    };
+  }
+  const bind = (id, field) => {
+    $(id).oninput = () => { STATE[field] = $(id).value; touch(); };
+  };
+  bind("bId", "chain_id"); bind("bLabel", "label"); bind("bCorpus", "corpus");
+  bind("bJuris", "jurisdiction"); bind("bNotes", "notes");
+  $("bKind").onchange = () => { STATE.declared_kind = $("bKind").value; touch(); };
+}
+
+/** Push STATE into the full form's inputs (after the wizard changed things). */
+function syncFormFromState() {
+  $("bId").value = STATE.chain_id;
+  $("bLabel").value = STATE.label;
+  $("bKind").value = STATE.declared_kind || "";
+  $("bCorpus").value = STATE.corpus || "";
+  $("bJuris").value = STATE.jurisdiction || "";
+  $("bNotes").value = STATE.notes || "";
+  for (const name of SCHEMA?.chain_links || []) {
+    const l = linkOf(name);
+    const st = $("bLinks").querySelector(`summary select[data-link="${name}"]`);
+    if (st) st.value = l.status;
+    const fl = $("bLinks").querySelector(`input[data-f="filler"][data-link="${name}"]`);
+    if (fl) fl.value = l.filler || "";
+  }
+}
+
+$("modeWizard").addEventListener("click", () => setBuildMode("wizard"));
+$("modeForm").addEventListener("click", () => setBuildMode("form"));
+
+function setBuildMode(mode) {
+  const wiz = mode === "wizard";
+  $("modeWizard").setAttribute("aria-selected", String(wiz));
+  $("modeForm").setAttribute("aria-selected", String(!wiz));
+  $("wizard").hidden = !wiz;
+  $("fullform").hidden = wiz;
+  if (wiz) renderWizard(); else syncFormFromState();
+}
+
+async function runBuild() {
+  clearError();
+  try {
+    LAST_BUILD = await api("/api/build", collectSpec());
+    $("bOut").innerHTML = renderBuild(LAST_BUILD);
+  } catch (e) {
+    showError(e.message);
+  }
+}
+
+function renderBuild(b) {
+  const v = b.validation || {};
+  const badge = v.status === "ok" ? `<span class="tag good">schema ok</span>`
+    : v.status === "invalid" ? `<span class="tag bad">schema invalid</span>`
+    : `<span class="tag">validation skipped</span>`;
+  const errs = (v.errors || []).length
+    ? `<ul class="hint">${v.errors.map((e) => `<li><code>${esc(e.path)}</code> — ${esc(e.message)}</li>`).join("")}</ul>`
+    : v.detail ? `<p class="hint">${esc(v.detail)}</p>` : "";
+
+  const head = `<div class="panel">
+      <h2>Draft chain ${badge}</h2>
+      ${errs}
+      <textarea readonly spellcheck="false" style="min-height:200px">${esc(JSON.stringify(b.chain, null, 2))}</textarea>
+    </div>`;
+
+  if (!b.typology)
+    return head + `<div class="panel"><p class="empty">${esc(b.error || "No typology produced.")}</p></div>`;
+  return head + renderTypology(b.typology);
+}
+
+$("bRun").addEventListener("click", () => withBusy($("bRun"), runBuild));
+
+$("bDownload").addEventListener("click", () => {
+  if (!LAST_BUILD?.chain) return showError("Generate a chain first.");
+  const blob = new Blob([JSON.stringify(LAST_BUILD.chain, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${LAST_BUILD.chain.chain_id || "draft"}.chain.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$("bToAnalyze").addEventListener("click", () => {
+  if (!LAST_BUILD?.chain) return showError("Generate a chain first.");
+  $("paste").value = JSON.stringify(LAST_BUILD.chain, null, 2);
+  setView("analyze");
+  $("runPaste").click();
+});
+
+// -- shared typology rendering ---------------------------------------
+
+function renderTypology(t) {
+  return [
+    headerPanel(t),
+    countsPanel(t.counts),
+    profilePanel(t),
+    failureModesPanel(t.predicted_failure_modes),
+    crossingsPanel(t.crossings),
+    rawPanel(t),
+  ].join("");
+}
+
+function headerPanel(t) {
+  const mismatch = t.kind_mismatch
+    ? `<div class="mismatch"><strong>Kind mismatch.</strong>
+         Declared <code>${esc(t.declared_kind)}</code>,
+         computed <code>${esc(t.computed_kind)}</code>.</div>`
+    : "";
+  const thick = t.chain_thickness || {};
+  return `<div class="panel">
+    <h2>${esc(t.system_label || t.chain_id || "chain")}</h2>
+    <div class="kindbar">
+      <div><div class="hint">Computed kind</div><div class="big">${esc(t.computed_kind ?? "—")}</div></div>
+      <div><div class="hint">Declared kind</div><div class="big">${esc(t.declared_kind ?? "—")}</div></div>
+      <div><div class="hint">Act thickness</div><div class="big">${esc(thick.act ?? "—")}</div></div>
+      <div><div class="hint">Repair thickness</div><div class="big">${esc(thick.repair ?? "—")}</div></div>
+    </div>
+    ${thick.summary ? `<p class="hint">${esc(thick.summary)}</p>` : ""}
+    ${mismatch}
+  </div>`;
+}
+
+function countsPanel(counts) {
+  if (!counts) return "";
+  const items = Object.entries(counts)
+    .map(([k, v]) => `<div><dt>${esc(titleize(k))}</dt><dd>${esc(v)}</dd></div>`).join("");
+  return `<div class="panel"><h2>Counts</h2><dl class="counts">${items}</dl></div>`;
+}
+
+function profilePanel(t) {
+  const byLocus = t.profile_by_locus || {};
+  const strata = KERNEL?.strata || [];
+  const loci = KERNEL?.loci || [];
+  if (!strata.length || !loci.length) return "";
+
+  const head = loci.map((l) => `<th title="${esc(l.label || l.id)}">${esc(l.id)}</th>`).join("");
+  const rows = strata.map((s) => {
+    const sid = s.id;
+    const summary = t.profile?.[sid];
+    const cells = loci.map(({ id: lid }) => {
+      const v = byLocus[sid]?.[lid];
+      return v
+        ? `<td><div class="cell f-${esc(v)}" title="${esc(sid)} × ${esc(lid)} — ${esc(titleize(v))}: ${esc(FIRING_HELP[v] || "")}">${esc(glyph(v))}</div></td>`
+        : `<td></td>`;
+    }).join("");
+    return `<tr><th title="${esc(s.definition || "")}">${esc(sid)}
+        <span style="font-weight:400;text-transform:none;letter-spacing:0">${esc(s.label || "")}</span>
+        ${s.gated ? '<span class="tag">gated</span>' : ""}</th>
+      <td><span class="tag">${esc(titleize(summary ?? "—"))}</span></td>${cells}</tr>`;
+  }).join("");
+
+  return `<div class="panel">
+    <h2>Profile — stratum × locus</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Stratum</th><th>Summary</th>${head}</tr></thead>
+      <tbody>${rows}</tbody></table></div>
+    ${FIRING_LEGEND}
+    ${t.profile_summary_rule ? `<p class="hint">${esc(t.profile_summary_rule)}</p>` : ""}
+  </div>`;
+}
+
+function failureModesPanel(modes) {
+  if (!modes?.length)
+    return `<div class="panel"><h2>Predicted failure modes</h2><p class="empty">None predicted.</p></div>`;
+  const rows = modes.map((m) => `<tr>
+    <td><code>${esc(m.primitive)}</code></td>
+    <td>${esc(m.primitive_name)}</td>
+    <td>${esc(m.stratum)}</td>
+    <td>${esc(m.locus)}</td>
+    <td><span class="tag">${esc(titleize(m.firing))}</span></td>
+    <td>${esc(m.named_type ?? "—")}</td>
+    <td>${esc(m.instrument ?? "—")}</td>
+    <td>${m.detectable_in_this_release ? '<span class="yes">yes</span>' : "no"}</td>
+  </tr>`).join("");
+  return `<div class="panel">
+    <h2>Predicted failure modes (${modes.length})</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Primitive</th><th>Name</th><th>Stratum</th><th>Locus</th>
+        <th>Firing</th><th>Named type</th><th>Instrument</th><th>Detectable</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
+  </div>`;
+}
+
+function crossingsPanel(crossings) {
+  if (!crossings?.length) return "";
+  const rows = crossings.map((c) => `<tr>
+    <td><code>${esc(c.primitive)}</code></td>
+    <td>${esc(c.locus)}</td>
+    <td><span class="tag">${esc(titleize(c.firing))}</span></td>
+    <td>${c.well_formed ? "yes" : "no"}</td>
+    <td>${c.gated ? "yes" : "no"}</td>
+    <td>${esc(c.link_status ?? "—")}</td>
+    <td>${esc(c.well_formedness_reason ?? "")}</td>
+  </tr>`).join("");
+  return `<div class="panel">
+    <h2>All crossings (${crossings.length})</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Primitive</th><th>Locus</th><th>Firing</th><th>Well-formed</th>
+        <th>Gated</th><th>Link</th><th>Reason</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
+  </div>`;
+}
+
+function rawPanel(t) {
+  return `<div class="panel"><h2>Raw typology</h2>
+    <textarea readonly spellcheck="false" style="min-height:200px">${esc(JSON.stringify(t, null, 2))}</textarea>
+  </div>`;
+}
+
+function jsonTable(data) {
+  const rows = Array.isArray(data) ? data : [data];
+  if (!rows.length) return `<p class="empty">Empty.</p>`;
+  const cols = [...new Set(rows.flatMap((r) => Object.keys(r || {})))];
+  const head = cols.map((c) => `<th>${esc(titleize(c))}</th>`).join("");
+  const body = rows.map((r) => `<tr>${cols.map((c) => {
+    const v = r?.[c];
+    return `<td>${esc(v && typeof v === "object" ? JSON.stringify(v) : v ?? "")}</td>`;
+  }).join("")}</tr>`).join("");
+  return `<div class="scroll"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+boot();
+</script>
+</body>
+</html>

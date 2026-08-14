@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sool.davidkoepsell.com/schema/kernel.schema.json",
+  "title": "Contradiction Kernel",
+  "description": "A domain-neutral kernel of contradiction primitives, stratified by ontological precondition, with a locus mask per primitive fixing where in a recognition chain each crossing is well-formed.",
+  "type": "object",
+  "required": [
+    "kernel_version",
+    "loci",
+    "strata",
+    "primitives",
+    "gating_rule"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "kernel_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "source": {
+      "type": "string"
+    },
+    "loci": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "definition"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/locusId"
+          },
+          "label": {
+            "type": "string"
+          },
+          "pseudo_locus": {
+            "type": "boolean",
+            "description": "True for loci that are not links of the recognition chain. Present unconditionally; not subject to the gating rule."
+          },
+          "definition": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "strata": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "precondition",
+          "gated"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/stratumId"
+          },
+          "label": {
+            "type": "string"
+          },
+          "precondition": {
+            "type": "string",
+            "description": "The structure a failure at this stratum presupposes in order to be possible at all. This is the index of the stratification."
+          },
+          "gated": {
+            "type": "boolean"
+          },
+          "definition": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "primitives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/primitive"
+      }
+    },
+    "gating_rule": {
+      "type": "object",
+      "required": [
+        "statement",
+        "values",
+        "ungated_values"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string"
+        },
+        "values": {
+          "$ref": "#/$defs/gateMap"
+        },
+        "ungated_values": {
+          "$ref": "#/$defs/gateMap"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "named_types": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "primitive",
+          "locus"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "primitive": {
+            "$ref": "#/$defs/primitiveId"
+          },
+          "locus": {
+            "$ref": "#/$defs/locusId"
+          },
+          "system_kind": {
+            "$ref": "#/$defs/systemKind"
+          },
+          "reading": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "external_lists": {
+      "type": "object"
+    },
+    "admission_criteria": {
+      "type": "object"
+    },
+    "bfo": {
+      "type": "object",
+      "description": "The BFO 2020 alignment. external_terms is the registry tools/check_bfo.py verifies against the upstream ontologies: the label is part of the claim, because the right IRI under the wrong description passes every structural check while meaning something else.",
+      "required": [
+        "external_terms"
+      ],
+      "properties": {
+        "conformance": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "external_terms": {
+          "type": "object",
+          "description": "OBO local identifier -> the label it carries upstream.",
+          "propertyNames": {
+            "pattern": "^[A-Z]+_[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minProperties": 1
+        },
+        "local_terms": {
+          "type": "object",
+          "description": "Terms minted here because nothing upstream has their shape.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "description": "Each modelling decision that could reasonably have gone another way, with the argument for it.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "decision",
+              "rationale"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "decision": {
+                "type": "string"
+              },
+              "rationale": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "locusId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z_]*$"
+    },
+    "stratumId": {
+      "type": "string",
+      "pattern": "^[A-Z]$"
+    },
+    "primitiveId": {
+      "type": "string",
+      "pattern": "^K-[A-Z]\\d+$"
+    },
+    "systemKind": {
+      "type": "string",
+      "enum": [
+        "reference_ontology",
+        "classification",
+        "certification_scheme",
+        "legal_order",
+        "other"
+      ]
+    },
+    "gateMap": {
+      "type": "object",
+      "required": [
+        "internal",
+        "external",
+        "absent"
+      ],
+      "properties": {
+        "internal": {
+          "$ref": "#/$defs/firingValue"
+        },
+        "external": {
+          "$ref": "#/$defs/firingValue"
+        },
+        "absent": {
+          "$ref": "#/$defs/firingValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "firingValue": {
+      "type": "string",
+      "enum": [
+        "fires",
+        "rare",
+        "cannot_fire",
+        "no_locus",
+        "not_applicable"
+      ]
+    },
+    "primitive": {
+      "type": "object",
+      "required": [
+        "id",
+        "stratum",
+        "name",
+        "definition",
+        "well_formed_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/primitiveId"
+        },
+        "stratum": {
+          "$ref": "#/$defs/stratumId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        },
+        "formal_signature": {
+          "type": "string"
+        },
+        "instrument": {
+          "type": "string",
+          "enum": [
+            "reasoner",
+            "reasoner_partial",
+            "structural",
+            "world_facing",
+            "process_or_text_internal"
+          ],
+          "description": "The detectability partition of paper §6.2. A reasoner is necessary and never sufficient."
+        },
+        "well_formed_at": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/locusId"
+          },
+          "uniqueItems": true
+        },
+        "excluded_at": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/locusId"
+          },
+          "uniqueItems": true
+        },
+        "well_formedness_rationale": {
+          "type": "string"
+        },
+        "precedents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "operationalized": {
+          "description": "Whether a detector exists in this release. Absence of a flag from a primitive that is not operationalized is never to be reported as absence of the failure.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "partial"
+              ]
+            }
+          ]
+        },
+        "operationalization_note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

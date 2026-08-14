@@ -1,0 +1,30 @@
+@prefix rk:   <https://sool.davidkoepsell.com/ontology/rk#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+
+<https://sool.davidkoepsell.com/ontology/rk/gating-violation>
+    a owl:Ontology ;
+    owl:imports <https://sool.davidkoepsell.com/ontology/rk> ;
+    rdfs:label "Gating rule violation"@en ;
+    rdfs:comment """This file MUST make the ontology inconsistent.
+
+Stratum D presupposes acts. Here a pragmatic contradiction is asserted to be
+part of an artifact that has no act specification, which is the one thing the
+gating rule forbids. If a reasoner reports this consistent, the gating rule is
+documented but not enforced.
+
+Typing the artifact as rk:ActEmptyArtifact is a closure assertion and is
+deliberate: OWL will not conclude the absence of a part on its own, so the
+absence has to be stated. That is the honest form of the claim, and it is not
+the same as minting an individual to carry a status of 'absent'.
+
+This is a different failure from mask-violation.ttl and must be tested
+separately."""@en .
+
+rk:chainlessArtifact a owl:NamedIndividual , rk:ActEmptyArtifact ;
+    rdfs:label "an artifact that performs no recognition act"@en .
+
+rk:pragmaticFailure_1 a owl:NamedIndividual , rk:KD3 ;
+    rdfs:label "a pragmatic contradiction asserted in an act-empty artifact"@en ;
+    obo:BFO_0000050 rk:chainlessArtifact .

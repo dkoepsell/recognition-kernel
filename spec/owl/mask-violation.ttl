@@ -1,0 +1,28 @@
+@prefix rk:   <https://sool.davidkoepsell.com/ontology/rk#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+
+<https://sool.davidkoepsell.com/ontology/rk/mask-violation>
+    a owl:Ontology ;
+    owl:imports <https://sool.davidkoepsell.com/ontology/rk> ;
+    rdfs:label "Locus mask violation"@en ;
+    rdfs:comment """This file MUST make the ontology inconsistent.
+
+K-A2 Term Incoherence requires a defined term whose satisfaction conditions can
+empty out. Presenting facts are asserted, not defined, so the kernel marks the
+crossing not well-formed and the module asserts it unsatisfiable.
+
+Here a term incoherence is asserted to be part of a facts specification. If a
+reasoner reports this consistent, the locus mask is documented but not
+enforced.
+
+This is a different failure from gating-violation.ttl and must be tested
+separately: the mask can go inert while the gate still fires, and the reverse."""@en .
+
+rk:factsSpec_1 a owl:NamedIndividual , rk:FactsSpecification ;
+    rdfs:label "the presenting facts of some artifact"@en .
+
+rk:incoherence_1 a owl:NamedIndividual , rk:KA2 ;
+    rdfs:label "a term incoherence asserted at presenting facts"@en ;
+    obo:BFO_0000050 rk:factsSpec_1 .

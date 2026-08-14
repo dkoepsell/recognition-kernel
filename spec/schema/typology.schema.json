@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sool.davidkoepsell.com/schema/typology.schema.json",
+  "title": "Generated Domain Typology",
+  "description": "Output of the typology generator: kernel x chain, with a firing value per crossing and a stratum profile. Every field is derived; nothing here is compiled by observation.",
+  "type": "object",
+  "required": [
+    "generated_by",
+    "kernel_version",
+    "chain_id",
+    "computed_kind",
+    "crossings",
+    "profile",
+    "counts"
+  ],
+  "properties": {
+    "generated_by": {
+      "type": "string"
+    },
+    "generated_on": {
+      "type": "string"
+    },
+    "kernel_version": {
+      "type": "string"
+    },
+    "chain_id": {
+      "type": "string"
+    },
+    "system_label": {
+      "type": "string"
+    },
+    "declared_kind": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "computed_kind": {
+      "type": "string",
+      "enum": [
+        "reference_ontology",
+        "classification",
+        "certification_scheme",
+        "legal_order",
+        "other"
+      ]
+    },
+    "kind_mismatch": {
+      "type": "boolean",
+      "description": "True when the declared kind and the kind computed from link statuses disagree. Reported, never reconciled."
+    },
+    "chain_thickness": {
+      "type": "object",
+      "required": [
+        "act",
+        "repair"
+      ],
+      "properties": {
+        "act": {
+          "type": "string",
+          "enum": [
+            "act-thick",
+            "act-thin",
+            "act-empty"
+          ]
+        },
+        "repair": {
+          "type": "string",
+          "enum": [
+            "repair-internal",
+            "repair-external",
+            "repair-absent"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "crossings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "primitive",
+          "locus",
+          "well_formed",
+          "firing"
+        ],
+        "properties": {
+          "primitive": {
+            "type": "string"
+          },
+          "stratum": {
+            "type": "string"
+          },
+          "locus": {
+            "type": "string"
+          },
+          "link_status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "well_formed": {
+            "type": "boolean"
+          },
+          "well_formedness_reason": {
+            "type": "string"
+          },
+          "firing": {
+            "type": "string",
+            "enum": [
+              "fires",
+              "rare",
+              "cannot_fire",
+              "no_locus",
+              "not_applicable"
+            ]
+          },
+          "gated": {
+            "type": "boolean"
+          },
+          "named_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "named_type_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "instrument": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "operationalized": {},
+          "detectable_in_this_release": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "profile": {
+      "type": "object",
+      "description": "Per-stratum summary: the strongest firing value attained by any well-formed crossing in that stratum.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "predicted_failure_modes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "primitive",
+          "locus",
+          "firing"
+        ],
+        "properties": {
+          "primitive": {
+            "type": "string"
+          },
+          "primitive_name": {
+            "type": "string"
+          },
+          "stratum": {
+            "type": "string"
+          },
+          "locus": {
+            "type": "string"
+          },
+          "firing": {
+            "type": "string"
+          },
+          "named_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reading": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "instrument": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "detectable_in_this_release": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "loci_total": {
+          "type": "integer"
+        },
+        "primitives_total": {
+          "type": "integer"
+        },
+        "cells_total": {
+          "type": "integer"
+        },
+        "well_formed": {
+          "type": "integer"
+        },
+        "fires": {
+          "type": "integer"
+        },
+        "rare": {
+          "type": "integer"
+        },
+        "cannot_fire": {
+          "type": "integer"
+        },
+        "no_locus": {
+          "type": "integer"
+        },
+        "not_applicable": {
+          "type": "integer"
+        },
+        "detectable_in_this_release": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "reporting_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Carried into every output per paper §10.4: not-detected is never reported as not-present, and not-implemented is never reported as zero."
+    },
+    "profile_by_locus": {
+      "type": "object",
+      "description": "Firing value per stratum per locus. The summary in `profile` discards this detail; two systems can share a summary and differ at remedy.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "profile_summary_rule": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

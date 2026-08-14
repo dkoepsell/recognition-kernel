@@ -1,0 +1,112 @@
+{
+  "$schema": "../../spec/schema/chain.schema.json",
+  "chain_id": "cfr205",
+  "system": {
+    "label": "7 CFR Part 205 (National Organic Program)",
+    "corpus": "not included; see NOTES.md",
+    "declared_kind": "certification_scheme",
+    "jurisdiction": "United States",
+    "license": "Work of the United States government; not subject to copyright.",
+    "notes": "Cell 3 of the registered design (paper §10.1 Table 11), and THE CELL THAT MATTERS. Three of the four cells test claims close to analytic. This one does not. If the three-valued gate is real, this scheme's Stratum D rate should sit measurably between the legal and classification cells. If it is statistically indistinguishable from both, the gate collapses to two values and the three-valued form is unsupported. The detector will not be adjusted to preserve the middle value. This cell has not been run."
+  },
+  "assigned_by": "hand assignment with evidence locators",
+  "committed_before_detection": true,
+  "links": {
+    "authority": {
+      "status": "internal",
+      "filler": "the Secretary of Agriculture, through the Agricultural Marketing Service, under the Organic Foods Production Act",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "7 CFR 205.1 (Meaning of terms) and subpart A generally",
+          "note": "The Part states its own scope and the authority under which certification proceeds."
+        }
+      ],
+      "specification": "internal"
+    },
+    "criteria": {
+      "status": "internal",
+      "filler": "production and handling standards; the National List",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "7 CFR 205 subpart C (organic production and handling requirements)",
+          "note": "Substantive standards specified in full."
+        },
+        {
+          "locator": "7 CFR 205 subpart G (the National List of allowed and prohibited substances)",
+          "note": "A criteria artifact with its own amendment procedure."
+        }
+      ],
+      "specification": "internal"
+    },
+    "assessor": {
+      "status": "internal",
+      "filler": "the accredited certifying agent",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "locator": "7 CFR 205 subpart F (accreditation of certifying agents)",
+          "note": "The scheme accredits its own assessors and specifies what they must do."
+        }
+      ],
+      "note": "Recorded as internal because accreditation is specified within the Part. The paper describes the scheme as thinner than a legal order at this link, and an annotator could defensibly record external. This is one of the two links at which annotator disagreement is expected to concentrate (paper §13), and it should be resolved by agreement study rather than by argument.",
+      "specification": "internal"
+    },
+    "facts": {
+      "status": "external",
+      "filler": "the operation's practices, records, and inspection findings",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "locator": "7 CFR 205.403 (on-site inspections)",
+          "note": "Inspection is specified, but the facts inspected are the operation's own and are not constituted by the scheme."
+        }
+      ],
+      "specification": "external"
+    },
+    "act": {
+      "status": "external",
+      "filler": "certification of an operation",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "locator": "7 CFR 205.404 (granting certification)",
+          "note": "The certifying act is performed by an accredited agent under the scheme's own procedure. The scheme itself does not certify."
+        }
+      ],
+      "note": "Act-thin, but thinner in a different way from a classification: the act is performed by an agent the scheme accredits, under a procedure the scheme writes. This is exactly the intermediate case the three-valued gate predicts and a two-valued gate cannot represent. Specification is internal (§205.404 states the procedure) while performance is external (an accredited agent, not the scheme, certifies). The pair of values is what distinguishes this cell from a classification, where specification is internal only at criteria.",
+      "specification": "internal"
+    },
+    "effects": {
+      "status": "external",
+      "filler": "market access; entitlement to use the organic label",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "locator": "7 CFR 205 subpart D (labels, labeling, and market information)",
+          "note": "The label entitlement is specified; its commercial force is conferred by the market, not by the Part."
+        }
+      ],
+      "specification": "internal"
+    },
+    "remedy": {
+      "status": "internal",
+      "filler": "noncompliance procedure, suspension, revocation, appeal",
+      "confidence": "high",
+      "evidence": [
+        {
+          "locator": "7 CFR 205.662 (noncompliance procedure for certified operations)",
+          "note": "Notice, rebuttal, correction, proposed suspension or revocation: a repair pathway specified within the scheme."
+        },
+        {
+          "locator": "7 CFR 205.681 (appeals)",
+          "note": "An internal appeal route."
+        }
+      ],
+      "note": "Repair-internal. This is what distinguishes the cell from a classification, whose revision happens to the artifact rather than to a conferral.",
+      "specification": "internal"
+    }
+  },
+  "provenance": "Assigned by inspection of the regulation's structure. Committed before any detector run over this corpus."
+}

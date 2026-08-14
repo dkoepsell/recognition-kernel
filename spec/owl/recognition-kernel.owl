@@ -1,0 +1,1336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:obo="http://purl.obolibrary.org/obo/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:rk="https://sool.davidkoepsell.com/ontology/rk#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b12">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#ConferredStatusRole"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b94">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b91"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b95"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KB2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumBContradiction"/>
+    <rdfs:label xml:lang="en">Equivocation</rdfs:label>
+    <skos:notation>K-B2</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">One item playing incompatible roles: a term, condition, or occupant doing double duty under conflicting demands.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Aristotle on equivocation</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: One element bound to two roles with conflicting satisfaction conditions</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Double duty is available at every locus, including facts, where one described state of affairs can be bound to two incompatible characterizations.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>structural</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b170">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b171"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#ActSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b117">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:complementOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b118"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#CriterionCircularity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Criterion Circularity</rdfs:label>
+    <skos:notation>CT-2</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-B1 located at the criteria locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b167"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#ResidualIndeterminacy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Residual Indeterminacy</rdfs:label>
+    <skos:notation>CT-5</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-B3 located at the criteria locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b185"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#JurisdictionalContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Jurisdictional Contradiction</rdfs:label>
+    <skos:notation>JC</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-A1 located at the effects locus in a legal order.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b131"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b83">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b84"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#CriterionDoubleDuty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Criterion Double-Duty</rdfs:label>
+    <skos:notation>CT-4</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-B2 located at the criteria locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b179"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b64">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b66"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b69">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b73"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b85">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b87"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b98">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b100"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KD2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumDContradiction"/>
+    <rdfs:label xml:lang="en">Performative Self-Defeat</rdfs:label>
+    <skos:notation>K-D2</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">An act whose success conditions are undermined by its own performance: a norm whose compliance conditions preclude compliance.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Hintikka on the performative cogito; Apel and Habermas on performative contradiction</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: Satisfying the act's content entails failure of its success conditions</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Requires an act with success conditions, or a norm stating compliance conditions.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>process_or_text_internal</rk:detectionInstrument>
+    <rk:operationalized>partial</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#ThresholdPolytheticIncoherence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Threshold / Polythetic Incoherence</rdfs:label>
+    <skos:notation>CT-3</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-A3 located at the criteria locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b173"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b8">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b5"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b187">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KC2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumCContradiction"/>
+    <rdfs:label xml:lang="en">Level Confusion</rdfs:label>
+    <skos:notation>K-C2</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">Representational levels conflated: a universal treated as a particular, a class as an instance, use as mention.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8.</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: One element occupying two levels whose disciplines conflict</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Level conflation is available wherever there is representation.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>structural</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dct:title xml:lang="en">The Recognition Kernel</dct:title>
+    <dct:description xml:lang="en">A domain-neutral kernel of twelve contradiction primitives in four strata, located by mereology over the seven links of a recognition chain. BFO 2020 conformant. Generated from data/kernel.json by tools/build_owl.py; do not edit by hand.
+
+A contradiction is an information content entity, a continuant part of the artifact bearing it. A contradiction at the criteria locus is one that is part of a criteria specification: there is no locus-indexing relation and no crossing individual, because BFO_0000050 already does the work. An absent link is the absence of a part, never an individual carrying a status of 'absent'.
+
+Three claims are machine-checkable and fail separately. The locus mask: a contradiction of a given class, part of a specification of a kind the mask excludes, is unsatisfiable. The gating rule: a Stratum D contradiction part of an artifact with no act specification is unsatisfiable. The named types: each is a defined class, so a reasoner classifies rather than looks up.</dct:description>
+    <dct:creator>David R. Koepsell</dct:creator>
+    <dct:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <dct:source>Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8.</dct:source>
+    <owl:versionInfo>0.2.0</owl:versionInfo>
+    <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo/2020/bfo.owl"/>
+    <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+    <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b136">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b133"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b199">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#RecognitionFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Recognition Failure</rdfs:label>
+    <skos:notation>CT-6</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-C3 located at the criteria locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b191"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b75">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b76"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b125">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b126"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KB3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumBContradiction"/>
+    <rdfs:label xml:lang="en">Residual Definition</rdfs:label>
+    <skos:notation>K-B3</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">A term defined only by complement: membership fixed negatively, as what remains once the positive categories are exhausted.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8.</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: C ≡ ¬D₁ ⊓ ¬D₂ ⊓ … with no positive differentia</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Well-formed wherever a positive differentia is owed. An authority is designated rather than defined by complement; facts are asserted; the act is performed.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>structural</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b61">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#ActSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Criteria</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The substantive standard applied in the recognition act.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#AuthorityInflation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Authority Inflation</rdfs:label>
+    <skos:notation>AI</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-B2 located at the authority locus in a legal order.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b143"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b192">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b137">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b140"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KC3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumCContradiction"/>
+    <rdfs:label xml:lang="en">Dependence Violation</rdfs:label>
+    <skos:notation>K-C3</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">A dependent entity posited without its bearer, or a grounding link severed, including where one direction of a mutual dependence is enforced and the other denied.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Husserl on foundation, as developed by Smith; BFO specific dependence</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: A specifically dependent continuant without a bearer</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Requires a dependent entity and a bearer relation. Presenting facts are the bearer side, not the dependent side.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>reasoner_partial</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b80">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b78"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b182">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b183"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b149">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b152"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b48">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b50"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b180">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b152">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b153"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KD3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumDContradiction"/>
+    <rdfs:label xml:lang="en">Modal Clash</rdfs:label>
+    <skos:notation>K-D3</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">A capacity present in structure but blocked in practice: possible according to the artifact, unrealizable in the institution implementing it. (de jure / de facto)</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Pound (1910) on law in books versus law in action</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: ◇-in-structure with ¬◇-in-practice for the same capacity</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Requires a capacity. Presenting facts confer none.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>process_or_text_internal</rk:detectionInstrument>
+    <rk:operationalized>True</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b174">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b155">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b158"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b198">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b202"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b163">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b201">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KA1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumAContradiction"/>
+    <rdfs:label xml:lang="en">Inconsistency</rdfs:label>
+    <skos:notation>K-A1</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">The theory admits no model; locally, a sentence and its negation are both derivable. Variants: assertional, deontic, analytic.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Aristotle on non-contradiction; Schlobach and Cornet (2003); Hohfeld (1917) for the analytic variant</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: O |= ⊥ globally; locally, jointly unsatisfiable assertions over one locus</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Jointly unsatisfiable assertions can be made about any locus, including presenting facts.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>reasoner</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#detectionInstrument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:label xml:lang="en">detection instrument</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b47">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b45"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b103">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AssessorSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b81">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b83"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#conferredBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">conferred by</rdfs:label>
+    <rdfs:domain rdf:resource="https://sool.davidkoepsell.com/ontology/rk#ConferredStatusRole"/>
+    <rdfs:range rdf:resource="https://sool.davidkoepsell.com/ontology/rk#RecognitionAct"/>
+    <rdfs:comment xml:lang="en">Relates a role to the process in which it came to be borne.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#ActSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Recognition act</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The act in which criteria are applied to facts and a status is conferred.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#EffectsSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Effects</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The consequences following from the conferral.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KA2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumAContradiction"/>
+    <rdfs:label xml:lang="en">Term Incoherence</rdfs:label>
+    <skos:notation>K-A2</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">The theory is satisfiable but some term is not: a class equivalent to the empty class.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Schlobach and Cornet (2003)</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: O consistent, yet O |= C ⊑ ⊥</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Requires a defined term whose satisfaction conditions can empty out. Presenting facts are asserted, not defined.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>reasoner</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#DeclarationWithoutBorneRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">declaration without borne role</rdfs:label>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b10"/>
+    <obo:IAO_0000115 xml:lang="en">A status declaration that is about no borne role. This class exists to make a position statable, not to be inferred: nothing will classify here without a closure axiom.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b108">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b109"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b89">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b96"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b121">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b122"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b141">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b138"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b142"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#prescribes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">prescribes</rdfs:label>
+    <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+    <rdfs:range rdf:nodeID="nee5ebead03d44b489e39592455ee0655b1"/>
+    <rdfs:comment xml:lang="en">Relates a directive information entity to the occurrent or realizable entity whose occurrence it directs. IAO has no relation of this shape. If one is adopted upstream, replace it and regenerate.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b14">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b11"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b30">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b31"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b72">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b178">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b175"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b142">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b139"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b114">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b121"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b35">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b36"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KC1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumCContradiction"/>
+    <rdfs:label xml:lang="en">Category Violation</rdfs:label>
+    <skos:notation>K-C1</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">An entity forced under disjoint upper-ontological categories: the formalized category mistake.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Ryle (1949); BFO disjointness axioms (Arp, Smith, and Spear 2015)</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: a : C and a : D, C and D disjoint at the upper level</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Anything typed at all can be mistyped.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>reasoner</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KA3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumAContradiction"/>
+    <rdfs:label xml:lang="en">Indeterminacy</rdfs:label>
+    <skos:notation>K-A3</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">Underconstraint: unintended models admitted, or membership undecided where practice requires a decision.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Waismann (1945); Hart (1961) on open texture</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: Intended and admitted models diverge; borderline membership underivable</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Underconstraint is available wherever anything is specified at all.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>structural</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b65">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumBContradiction"/>
+    <rdfs:label xml:lang="en">Circularity</rdfs:label>
+    <skos:notation>K-B1</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">Non-wellfounded definition or grounding: a term's conditions depend transitively on the term itself, or a grounding order is inverted. The temporal case is inversion projected into time.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Koepsell, D. R., The Recognition Layer: A Generative Typology of Structural Contradiction for Recognition-Constituted Domains (working draft), §6-§8.</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: A cycle in the definition dependency graph, or inversion of a required grounding order</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Requires a definition or grounding order. Presenting facts supply neither.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>reasoner_partial</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b57">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b118">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b49">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b205">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b206"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#Contradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+    <rdfs:label xml:lang="en">structural contradiction</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">An information content entity that is a continuant part of a recognition artifact and constitutes a structural defect in it. Not a quality: two printings of one code carry the same contradiction, so the entity is generically dependent rather than inhering in a material bearer.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b68">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b75"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b195">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b192"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b196"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b196">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b193"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b15">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="nee5ebead03d44b489e39592455ee0655b16"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b154">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b151"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b111">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#EffectsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#StratumDContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Pragmatic</rdfs:label>
+    <skos:note xml:lang="en">precondition: acts; gated: true</skos:note>
+    <obo:IAO_0000115 xml:lang="en">Failures available only where there are acts.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#LegalOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+    <rdfs:label xml:lang="en">legal order</rdfs:label>
+    <skos:notation>legal_order</skos:notation>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b173">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b176"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#RepairFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Repair Failure</rdfs:label>
+    <skos:notation>RF</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-D3 located at the remedy locus in a legal order.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b155"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b106">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b108"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b120">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b117"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b59">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b57"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b134">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b135"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b185">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b188"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#StratumBContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Definitional</rdfs:label>
+    <skos:note xml:lang="en">precondition: a system of definitions; gated: false</skos:note>
+    <obo:IAO_0000115 xml:lang="en">Failures in how terms are defined and grounded, independent of domain content.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#AuthoritySpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Source of authority</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The source entitled to fix the criteria.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b179">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b182"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b55">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b53"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b190">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b187"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b186">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b20">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#ActSpecification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b21"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b44">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b46"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b2">
+    <rdf:first rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b82">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b124">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b167">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b170"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#KD1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumDContradiction"/>
+    <rdfs:label xml:lang="en">Falsification</rdfs:label>
+    <skos:notation>K-D1</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">Assertion and world mismatched: triggering conditions fabricated, suppressed, or misrepresented. The artifact is coherent; its contact with reality is corrupted.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">the law of evidence as an institutionalized detection apparatus</obo:IAO_0000119>
+    <skos:note xml:lang="en">formal signature: An asserted triggering condition with no worldly truthmaker</skos:note>
+    <rk:wellFormednessRationale xml:lang="en">Requires something asserted about the world. Authority, criteria and role are conferred rather than asserted.</rk:wellFormednessRationale>
+    <rk:detectionInstrument>world_facing</rk:detectionInstrument>
+    <rk:operationalized>False</rk:operationalized>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b202">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b199"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b203"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b62">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b63"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b144">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AuthoritySpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#RemedySpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Remedy</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The pathway, where the system provides one, by which a conferral can be revisited.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#StratumCContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Meta-ontological</rdfs:label>
+    <skos:note xml:lang="en">precondition: an upper ontology; gated: false</skos:note>
+    <obo:IAO_0000115 xml:lang="en">Failures of typing and grounding relative to an upper ontology.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#ActEmptyArtifact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">act-empty artifact</rdfs:label>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b4"/>
+    <obo:IAO_0000115 xml:lang="en">A recognition artifact with no act specification part. Typing an individual here is a closure assertion: OWL will not conclude the absence of a part on its own.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#StatusDeclaration">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+    <rdfs:label xml:lang="en">status declaration</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">An information content entity that is about a conferred status role.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#Specification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+    <rdfs:label xml:lang="en">chain specification</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">A directive information entity that is part of a recognition artifact and supplies one link of its chain.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b165">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b162"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b166"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b53">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AuthoritySpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b148">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b145"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#TypeContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Type Contradiction</rdfs:label>
+    <skos:notation>CT-7</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-C1 located at the artifact locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b197"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b168">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b91">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b162">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b159">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b156"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b160"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#ConferredStatusRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+    <rdfs:subClassOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b9"/>
+    <rdfs:label xml:lang="en">conferred status role</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">A role borne by an entity in virtue of a recognition act. Every such role is characteristic of some independent continuant: that is what having a bearer amounts to, and it is precisely what a status declaration does not assert.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b95">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b92"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b171">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b168"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b172"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b74">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b71"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b58">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b59"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b191">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b194"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b107">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b22">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#RemedySpecification"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b50">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b51"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#DisjointnessOverlapFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Disjointness / Overlap Failure</rdfs:label>
+    <skos:notation>CT-1</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-A1 located at the criteria locus in a classification.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Paper §7.3 Table 8.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b161"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b132">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#EffectsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b161">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b164"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b110">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b112"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b119">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b116"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b120"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b138">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b73">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b70"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b74"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#StratumAContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Model-theoretic</rdfs:label>
+    <skos:note xml:lang="en">precondition: a formal theory; gated: false</skos:note>
+    <obo:IAO_0000115 xml:lang="en">Failures of a theory relative to its models.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b28">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="nee5ebead03d44b489e39592455ee0655b29"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b67">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b65"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b140">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b141"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b42">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b43"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b43">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#LegalOrder"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b66">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b67"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b197">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b205"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b158">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b159"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b19">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b143">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b146"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b96">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b97"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b23">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="nee5ebead03d44b489e39592455ee0655b24"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b93">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b130">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b128"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b207">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b204"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b71">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:complementOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b72"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b184">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b181"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b172">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b169"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b176">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b177"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b129">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumDContradiction"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b130"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b27">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumDContradiction"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b32">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b33"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b150">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AssessorSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#AssessorSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Assessor in role</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The agent licensed by the authority to apply the criteria.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b189">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b186"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b190"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b128">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#ActEmptyArtifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b21">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#EffectsSpecification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b22"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b102">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b104"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b26">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumCContradiction"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b27"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b112">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b113"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b115">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b119"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:complementOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b100">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b101"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b7">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b51">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b49"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b193">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b13">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StatusDeclaration"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b14"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#RecognitionAct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+    <rdfs:label xml:lang="en">recognition act</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">A process in which criteria are applied to facts and a status is conferred.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b39">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b40"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b135">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b132"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b136"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b52">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b54"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b79">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b80"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b70">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#operationalized">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:label xml:lang="en">operationalized</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b34">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b35"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b77">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b79"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b153">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b150"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b154"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Specification"/>
+    <rdfs:label xml:lang="en">Presenting facts</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">The state of affairs to which the criteria are applied.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b127">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b129"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b40">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD3"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b78">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AuthoritySpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b166">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b163"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b87">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b88"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b99">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AuthoritySpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b183">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b180"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b184"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b38">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b39"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b46">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b47"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b76">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b69"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b56">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b58"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b3">
+    <rdf:first rdf:resource="http://purl.obolibrary.org/obo/BFO_0000017"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b41">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="nee5ebead03d44b489e39592455ee0655b42"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b156">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#RemedySpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b113">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b111"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b37">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b38"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b109">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b107"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b60">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b62"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b139">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#LegalOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#Classification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+    <rdfs:label xml:lang="en">classification</rdfs:label>
+    <skos:notation>classification</skos:notation>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b126">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b124"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b84">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b82"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#wellFormednessRationale">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:label xml:lang="en">well-formedness rationale</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b24">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumAContradiction"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b25"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b63">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b61"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b188">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b189"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b160">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b157"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b31">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b32"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b88">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b86"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b146">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b147"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#Artifact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+    <rdfs:label xml:lang="en">recognition artifact</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">An information content entity that constitutes, in whole or in part, a system of recognition: a code, a standard, a rule set, an ontology.</obo:IAO_0000115>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b105">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b103"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b54">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b55"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b97">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b90"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b45">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#FactsSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b194">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC3"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b195"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b131">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b134"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b204">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b133">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#LegalOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b122">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b115"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b147">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b144"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b148"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b18">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AssessorSpecification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b19"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b92">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:complementOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b93"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b175">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b181">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#ConferralFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Conferral Failure</rdfs:label>
+    <skos:notation>CF</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-C3 located at the assessor locus in a legal order.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b149"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b177">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b174"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b178"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b86">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AssessorSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#TemporalContradiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Contradiction"/>
+    <rdfs:label xml:lang="en">Temporal Contradiction</rdfs:label>
+    <skos:notation>TC</skos:notation>
+    <obo:IAO_0000115 xml:lang="en">K-B1 located at the criteria locus in a legal order.</obo:IAO_0000115>
+    <obo:IAO_0000119 xml:lang="en">Structural Ontology of Law (Koepsell forthcoming), located at these coordinates in §7.2 Table 7.</obo:IAO_0000119>
+    <owl:equivalentClass rdf:nodeID="nee5ebead03d44b489e39592455ee0655b137"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b151">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#LegalOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b200">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:complementOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b201"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://sool.davidkoepsell.com/ontology/rk#firingValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:label xml:lang="en">firing value</rdfs:label>
+    <rdfs:comment xml:lang="en">fires, rare, cannot_fire, no_locus or not_applicable. A prediction about what can occur, not a detection of what has.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b33">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KB2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b34"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b13"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b36">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KC2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b37"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b203">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b200"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:complementOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b123">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b125"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b116">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Artifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b104">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KD2"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b105"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b25">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#StratumBContradiction"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b26"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b157">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#LegalOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b90">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="nee5ebead03d44b489e39592455ee0655b94"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b29">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b30"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b16">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#AuthoritySpecification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b17"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b169">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#Classification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b145">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    <owl:someValuesFrom rdf:resource="https://sool.davidkoepsell.com/ontology/rk#LegalOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b101">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b99"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b164">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#KA1"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b165"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b17">
+    <rdf:first rdf:resource="https://sool.davidkoepsell.com/ontology/rk#CriteriaSpecification"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b18"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nee5ebead03d44b489e39592455ee0655b206">
+    <rdf:first rdf:nodeID="nee5ebead03d44b489e39592455ee0655b198"/>
+    <rdf:rest rdf:nodeID="nee5ebead03d44b489e39592455ee0655b207"/>
+  </rdf:Description>
+</rdf:RDF>
